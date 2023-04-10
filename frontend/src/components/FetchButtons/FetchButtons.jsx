@@ -18,19 +18,24 @@ export default function FetchButtons() {
     },
   ];
 
-  const [post, setPost] = useState(null);
-  const [name, setName] = useState("");
+  const [apiChoice, setApiChoice] = useState(null);
+  const [apiName, setApiName] = useState("");
 
-  const getImages = (url, apiName) => {
-    axios.get(url).then((response) => {
-      setPost(response.data);
-      setName(apiName);
-    });
+  const getImages = (url, name) => {
+    axios
+      .get(url)
+      .then((response) => {
+        setApiChoice(response.data);
+        setApiName(name);
+      })
+      .catch((e) => {
+        console.error(e);
+      });
   };
-  if (!post)
+  if (!apiChoice)
     return (
       <div>
-        <h1>Select an API !</h1>
+        <h2>Choisi ton thème !</h2>
         <button
           type="button"
           onClick={() => getImages(ApiList[0].url, ApiList[0].name)}
@@ -51,17 +56,24 @@ export default function FetchButtons() {
         </button>
       </div>
     );
-
   return (
     <div>
-      <button type="button" onClick={() => setPost(null)}>
+      <button type="button" onClick={() => setApiChoice(null)}>
         Précédent
       </button>
-      {name === ApiList[0].name && (
-        <img alt="Disney" src={post.data[1].imageUrl} />
-      )}
-      {name === ApiList[1].name && <h2>Bientôt !</h2>}
-      {name === ApiList[2].name && <h2>Bientôt !</h2>}
+      {apiName === ApiList[0].name &&
+        apiChoice.data.map((item) => (
+          <img
+            alt="Disney"
+            // eslint-disable-next-line no-param-reassign, no-underscore-dangle
+            key={item._id}
+            src={item.imageUrl}
+            style={{ width: "200px", height: "300px", objectFit: "cover" }}
+          />
+        ))}
+
+      {apiName === ApiList[1].name && <h3>Bientôt !</h3>}
+      {apiName === ApiList[2].name && <h3>Bientôt !</h3>}
     </div>
   );
 }
