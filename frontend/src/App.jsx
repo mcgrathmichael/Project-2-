@@ -8,6 +8,7 @@ import Leaderboard from "./pages/Leaderboard";
 function App() {
   return (
     <div className="App">
+<<<<<<< HEAD
       <BrowserRouter>
         <Routes>
           <Route path="/" element={<NavBar />}>
@@ -17,6 +18,9 @@ function App() {
           </Route>
         </Routes>
       </BrowserRouter>
+=======
+      <Home />
+>>>>>>> 8354eaa (first API working)
     </div>
   );
 }
