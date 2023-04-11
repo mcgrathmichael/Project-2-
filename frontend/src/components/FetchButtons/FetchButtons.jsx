@@ -2,7 +2,7 @@ import { useState } from "react";
 import axios from "axios";
 
 export default function FetchButtons() {
-  const NombreDePersonnages = "101";
+  const NombreDePersonnages = "50";
   const ApiList = [
     {
       name: "Disney",
@@ -10,22 +10,22 @@ export default function FetchButtons() {
     },
     {
       name: "Pokemon",
-      url: `https://api.disneyapi.dev/characters?pageSize=${NombreDePersonnages}`,
+      url: `https://raw.githubusercontent.com/PokeAPI/sprites/master/sprites/pokemon/151.png`,
     },
     {
       name: "Zelda",
-      url: `https://api.disneyapi.dev/characters?pageSize=${NombreDePersonnages}`,
+      url: `https://botw-compendium.herokuapp.com/api/v2/all`,
     },
   ];
 
-  const [apiChoice, setApiChoice] = useState(null);
+  const [apiChoice, setApiChoice] = useState();
   const [apiName, setApiName] = useState("");
 
   const getImages = (url, name) => {
     axios
       .get(url)
       .then((response) => {
-        setApiChoice(response.data);
+        setApiChoice(response.data.data);
         setApiName(name);
       })
       .catch((e) => {
@@ -36,33 +36,25 @@ export default function FetchButtons() {
     return (
       <div>
         <h2>Choisi ton thème !</h2>
-        <button
-          type="button"
-          onClick={() => getImages(ApiList[0].url, ApiList[0].name)}
-        >
-          {ApiList[0].name}
-        </button>
-        <button
-          type="button"
-          onClick={() => getImages(ApiList[1].url, ApiList[1].name)}
-        >
-          {ApiList[1].name}
-        </button>
-        <button
-          type="button"
-          onClick={() => getImages(ApiList[2].url, ApiList[2].name)}
-        >
-          {ApiList[2].name}
-        </button>
+        {ApiList.map((api) => (
+          <button
+            type="button"
+            key={api.name}
+            onClick={() => getImages(api.url, api.name)}
+          >
+            {api.name}
+          </button>
+        ))}
       </div>
     );
   return (
     <div>
+      {}
       <button type="button" onClick={() => setApiChoice(null)}>
         Précédent
       </button>
       {apiName === ApiList[0].name &&
-        apiChoice.data.map((item) => (
+        apiChoice.map((item) => (
           <img
             alt="Disney"
             // eslint-disable-next-line no-param-reassign, no-underscore-dangle
@@ -73,7 +65,16 @@ export default function FetchButtons() {
         ))}
 
       {apiName === ApiList[1].name && <h3>Bientôt !</h3>}
-      {apiName === ApiList[2].name && <h3>Bientôt !</h3>}
+      {apiName === ApiList[2].name &&
+        apiChoice.monsters.map((item) => (
+          <img
+            alt="Zelda"
+            // eslint-disable-next-line no-param-reassign, no-underscore-dangle
+            key={item.id}
+            src={item.image}
+            style={{ width: "200px", height: "300px", objectFit: "cover" }}
+          />
+        ))}
     </div>
   );
 }
