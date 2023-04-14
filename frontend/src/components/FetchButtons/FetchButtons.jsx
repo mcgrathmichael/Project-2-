@@ -2,7 +2,7 @@ import { useState, useEffect } from "react";
 import axios from "axios";
 /* eslint-disable */
 
-function App() {
+function FetchButtons() {
   const characters = "100";
 
   // item is for eval when mapping, same for the path
@@ -142,5 +142,5 @@ function App() {
     </div>
   );
 }
-
-export default App;
+/* eslint-enable */
+export default FetchButtons;
