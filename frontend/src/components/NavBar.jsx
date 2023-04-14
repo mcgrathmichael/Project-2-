@@ -1,21 +1,26 @@
 /* eslint-disable import/no-extraneous-dependencies */
-import { BrowserRouter, Routes, Route } from "react-router-dom";
-import Layout from "../pages/Layout";
-import Home from "../pages/Home";
-import Rules from "../pages/Rules";
-import Leaderboard from "../pages/Leaderboard";
+import { Outlet, Link } from "react-router-dom";
+import "./NavBar.scss";
 
 function NavBar() {
   return (
-    <BrowserRouter>
-      <Routes>
-        <Route path="/" element={<Layout />}>
-          <Route path="home" element={<Home />} />
-          <Route path="rules" element={<Rules />} />
-          <Route path="leaderboard" element={<Leaderboard />} />
-        </Route>
-      </Routes>
-    </BrowserRouter>
+    <>
+      <nav>
+        <ul>
+          <li>
+            <Link to="/">Home</Link>
+          </li>
+          <li>
+            <Link to="Rules">Rules</Link>
+          </li>
+          <li>
+            <Link to="Leaderboard">Leaderboard</Link>
+          </li>
+        </ul>
+      </nav>
+
+      <Outlet />
+    </>
   );
 }
 
