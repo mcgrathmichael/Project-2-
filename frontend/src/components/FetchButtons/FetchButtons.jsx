@@ -97,6 +97,42 @@ function FetchButtons() {
     }
   }, [apiData.length]);
 
+  // Function to render the data from the API in the last return,  perhaps it could be
+  // used to send image to other components ?
+  const renderApiData = () => {
+    return (
+      <div>
+        {/* Button to go back to the list of  APIs */}
+        <button
+          type="button"
+          onClick={() => {
+            setFetched(null);
+            setApiData([]);
+            setFilteredData([]);
+          }}
+        >
+          Précédent
+        </button>
+        {/* Map through the list of available APIs and display images for the fetched data */}
+        {ApiList.map(
+          (api) =>
+            api.name === fetched &&
+            filteredData?.map((item) => (
+              <img
+                key={_.get(item, api.key)}
+                src={_.get(item, api.path_to_image)}
+                alt={_.get(item, api.item_name)}
+                style={{
+                  width: "200px",
+                  height: "300px",
+                  objectFit: "cover",
+                }}
+              />
+            ))
+        )}
+      </div>
+    );
+  };
   // Render component
   // If no API has been fetched, display a list of available APIs to fetch data
   if (!fetched) {
@@ -119,40 +155,8 @@ function FetchButtons() {
       </div>
     );
   }
-
   // If an API has been fetched, display the fetched data
-  return (
-    <div>
-      {/* Button to go back to the list of  APIs */}
-      <button
-        type="button"
-        onClick={() => {
-          setFetched(null);
-          setApiData([]);
-          setFilteredData([]);
-        }}
-      >
-        Précédent
-      </button>
-      {/* Map through the list of available APIs and display images for the fetched data */}
-      {ApiList.map(
-        (api) =>
-          api.name === fetched &&
-          filteredData?.map((item) => (
-            <img
-              key={_.get(item, api.key)}
-              src={_.get(item, api.path_to_image)}
-              alt={_.get(item, api.item_name)}
-              style={{
-                width: "200px",
-                height: "300px",
-                objectFit: "cover",
-              }}
-            />
-          ))
-      )}
-    </div>
-  );
+  return renderApiData();
 }
 
 export default FetchButtons;
