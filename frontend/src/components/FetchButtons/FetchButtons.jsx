@@ -1,106 +1,116 @@
 import { useState, useEffect } from "react";
 import axios from "axios";
-/* eslint-disable */
+import _ from "lodash";
 
 function FetchButtons() {
   const characters = "100";
 
-  // item is for eval when mapping, same for the path
+  // List of APIs to fetch data from
   const ApiList = [
     {
       name: "Disney",
       url: `https://api.disneyapi.dev/characters?pageSize=${characters}`,
-      path_to_data: "response?.data?.data",
-      path_to_image: "item.imageUrl",
-      key: "item._id",
-      item_name: "item.name",
+      path_to_data: "data.data",
+      path_to_image: "imageUrl",
+      key: "_id",
+      item_name: "name",
     },
     {
       name: "Zelda",
       url: `https://botw-compendium.herokuapp.com/api/v2/all`,
-      path_to_data: "response?.data?.data?.equipment",
-      path_to_image: "item.image",
-      key: "item.id",
-      item_name: "item.name",
+      path_to_data: "data.data.equipment",
+      path_to_image: "image",
+      key: "id",
+      item_name: "name",
     },
   ];
+
   const [apiData, setApiData] = useState([]);
   const [filteredData, setFilteredData] = useState([]);
   const [fetched, setFetched] = useState();
-
-  // Fetch the data from the api list when the button of the first return is pressed
-  const fetchData = (url, name) => {
-    axios({
-      method: "get",
-      url,
-    })
-      .then(function (response) {
-        ApiList.map((api) => {
-          if (api.name === name) {
-            const data = eval(api.path_to_data);
-            setApiData(data);
-          } else {
-            return "";
-          }
-        });
-      })
-      .catch(function (error) {
-        console.error(error);
+  // Fetch data from API and update Fetched state and apiData state
+  const fetchData = async (url, name) => {
+    try {
+      // Send GET request to the API URL
+      const response = await axios({
+        method: "get",
+        url,
       });
+      // Find the corresponding API object by name in ApiList
+      const api = _.find(ApiList, { name });
+      // Get the data from the response using the API's path_to_data property
+      const data = _.get(response, api.path_to_data);
+      // Update the state with the fetched data and name of the API
+      setApiData(data);
+      setFetched(name);
+    } catch (error) {
+      // Log any errors that occur during the fetch
+      console.error(error);
+    }
   };
-  // check if the links are dead or containing "noimage" in the url
-  const checkLink = (url) =>
-    axios({
-      method: "get",
-      url,
-    })
-      .then(function (response) {
-        if (!url.includes("Noimage")) {
-          return true; // the link is working and not displaying the image if noimage is in the url
-        }
-        return false;
-      })
-      .catch(function (error) {
-        return false; // the link is broken
+
+  // Check if the image URL is working properly
+  const checkLink = async (url) => {
+    try {
+      await axios({
+        method: "get",
+        url,
       });
+      // Return true if the link doesn't contain "Noimage", indicating a valid image
+      return !url.includes("Noimage");
+    } catch (error) {
+      // Return false if there's an error, indicating an invalid image
+      return false;
+    }
+  };
+  /**
+   * set the data to only the good ones from the function checklink,
+   * it check for each data if the checklink has returned true or false.
+   */
+  function handleFilterData(results) {
+    // Filter the apiData based on the results of the checkLink function
+    setFilteredData(_.filter(apiData, (item, index) => results[index]));
+  }
 
   useEffect(() => {
-    let promises = "";
-    // map through api and send each links to checklink function
-    ApiList.map((api) => {
-      if (api.name === fetched) {
-        promises = apiData.map((item) => checkLink(eval(api.path_to_image)));
-      }
-    });
-    // wait for the checklink function to finish, then set the fetcheddata to the one that have working links
-    Promise.all(promises)
-      .then(function (results) {
-        setFilteredData(
-          apiData.filter(
-            (item, index) => results[index] // only keep the items with working links
-          )
-        );
-      })
-      .catch(function (error) {
-        console.error(error);
+    let promises = [];
+
+    // Find the API object with the matching name from the fetched state
+    const api = _.find(ApiList, { name: fetched });
+
+    if (api) {
+      // Create an array of Promises for each item in the API data
+      promises = apiData.map((item) => {
+        // Get the image path for this item from the API data
+        const imagePath = _.get(item, api.path_to_image);
+
+        // Check the link to the image using the `checkLink` function
+        // and return a Promise for this check
+        return checkLink(imagePath);
       });
-    console.info("success");
+
+      // Wait for all the Promises to resolve and then handle the results
+      Promise.all(promises)
+        .then(handleFilterData) // handleFilterData is a function that sets the filtered data based on the results of the link checks
+        .catch(console.error);
+      console.info("success");
+    }
   }, [apiData.length]);
 
-  if (!fetched)
+  // Render component
+  // If no API has been fetched, display a list of available APIs to fetch data
+  if (!fetched) {
     return (
       <div>
         <h2>Choisi ton thème !</h2>
-        {/* map through api object and display a button each time for each api  */}
+        {/* Map through the list of APIs and display a button for each one */}
         {ApiList.map((api) => (
           <button
             type="button"
             key={api.name}
             onClick={() => {
-              // when the button is clicked fetch the data from the api
+              // When a button is clicked, fetch data from the corresponding API
               fetchData(api.url, api.name);
-              // set the fetched usestated to the name of the api, so it return the next return function
-              setFetched(api.name);
             }}
           >
             {api.name}
@@ -108,29 +118,31 @@ function FetchButtons() {
         ))}
       </div>
     );
-  // TODO Remove the last return and send the image from the filteredData, and map them.
-  //  make the const numbers of characters a props to only fetched necessary one
+  }
+
+  // If an API has been fetched, display the fetched data
   return (
     <div>
+      {/* Button to go back to the list of  APIs */}
       <button
+        type="button"
         onClick={() => {
-          // when precendent is clicked, delete the data fetched and return to the choices
-          setFetched(null), setApiData([]), setFilteredData([]);
+          setFetched(null);
+          setApiData([]);
+          setFilteredData([]);
         }}
       >
         Précédent
       </button>
-      {/* map through api list for better adaptability */}
+      {/* Map through the list of available APIs and display images for the fetched data */}
       {ApiList.map(
         (api) =>
           api.name === fetched &&
-          // map through the working link and display the working one
           filteredData?.map((item) => (
             <img
-              // get the differents path from the object
-              key={eval(api.key)}
-              src={eval(api.path_to_image)}
-              alt={eval(api.item_name)}
+              key={_.get(item, api.key)}
+              src={_.get(item, api.path_to_image)}
+              alt={_.get(item, api.item_name)}
               style={{
                 width: "200px",
                 height: "300px",
@@ -142,5 +154,5 @@ function FetchButtons() {
     </div>
   );
 }
-/* eslint-enable */
+
 export default FetchButtons;
