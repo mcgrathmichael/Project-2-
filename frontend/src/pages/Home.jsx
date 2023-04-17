@@ -1,5 +1,6 @@
 import InputUserName from "../components/InputUsername/InputUsername";
 import FetchButtons from "../components/FetchButtons/FetchButtons";
+import StartButton from "../components/StartButton/StartButton";
 
 function Home() {
   return (
@@ -7,6 +8,7 @@ function Home() {
       <h1>Mashup Memo</h1>
       <InputUserName />
       <FetchButtons />
+      <StartButton />
     </>
   );
 }
