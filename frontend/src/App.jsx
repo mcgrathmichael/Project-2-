@@ -1,10 +1,10 @@
 import "./App.scss";
 import { BrowserRouter, Routes, Route } from "react-router-dom";
 import NavBar from "./components/NavBar/NavBar";
-import Home from "./pages/Home";
-import Game from "./pages/Game";
+import Home from "./pages/HomePage/HomePage";
+import Game from "./pages/GamePage/GamePage";
 // import Rules from "./pages/Rules";
-import LeaderboardPage from "./pages/LeaderboardPage";
+import LeaderboardPage from "./pages/LeaderboardPage/LeaderboardPage";
 
 function App() {
   // Only show StopWatch after 5 seconds
