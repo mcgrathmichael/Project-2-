@@ -2,7 +2,7 @@ import InputUserName from "../../components/InputUsername/InputUsername";
 import FetchButtons from "../../components/FetchButtons/FetchButtons";
 import StartButton from "../../components/StartButton/StartButton";
 
-function Home() {
+function HomePage() {
   return (
     <>
       <h1>Mashup Memo</h1>
@@ -13,4 +13,4 @@ function Home() {
   );
 }
 
-export default Home;
+export default HomePage;

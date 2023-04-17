@@ -1,9 +1,9 @@
 import "./App.scss";
 import { BrowserRouter, Routes, Route } from "react-router-dom";
 import NavBar from "./components/NavBar/NavBar";
-import Home from "./pages/HomePage/HomePage";
-import Game from "./pages/GamePage/GamePage";
-// import Rules from "./pages/Rules";
+import HomePage from "./pages/HomePage/HomePage";
+import GamePage from "./pages/GamePage/GamePage";
+// import RulesPage from "./pages/RulesPage/RulesPage";
 import LeaderboardPage from "./pages/LeaderboardPage/LeaderboardPage";
 
 function App() {
@@ -13,10 +13,10 @@ function App() {
       <BrowserRouter>
         <Routes>
           <Route path="/" element={<NavBar />}>
-            <Route index element={<Home />} />
-            {/* <Route path="/rules" element={<Rules />} /> */}
+            <Route index element={<HomePage />} />
+            {/* <Route path="/rules" element={<RulesPage />} /> */}
             <Route path="/leaderboard" element={<LeaderboardPage />} />
-            <Route path="/game" element={<Game />} />
+            <Route path="/game" element={<GamePage />} />
           </Route>
         </Routes>
       </BrowserRouter>
