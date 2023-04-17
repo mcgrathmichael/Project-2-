@@ -1,7 +1,7 @@
 /* eslint-disable import/no-extraneous-dependencies */
 import { Outlet, Link } from "react-router-dom";
 import "./NavBar.scss";
-import logo from "../assets/mmlogo.png";
+import logo from "../../assets/mmlogo.png";
 
 function NavBar() {
   return (

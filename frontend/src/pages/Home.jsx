@@ -1,4 +1,4 @@
-import InputUserName from "../components/Input-username/input-username";
+import InputUserName from "../components/InputUsername/InputUsername";
 import FetchButtons from "../components/FetchButtons/FetchButtons";
 
 function Home() {
