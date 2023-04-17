@@ -1,5 +1,5 @@
 import React from "react";
-import "./styles/Startbutton.scss";
+import "./StartButton.scss";
 
 function StartButton() {
   // The start button only appears when another button is clicked.

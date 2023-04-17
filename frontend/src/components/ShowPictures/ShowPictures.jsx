@@ -1,6 +1,6 @@
 import React, { useState } from "react";
-import "./styles/ShowPictures.scss";
-import point from "../assets/point.svg";
+import "./ShowPictures.scss";
+import point from "../../assets/point.svg";
 
 function ShowPictures() {
   const [num, setNum] = useState(1);
