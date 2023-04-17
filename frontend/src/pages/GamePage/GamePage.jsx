@@ -6,7 +6,7 @@ import ShowPictures from "../../components/ShowPictures/ShowPictures";
 import Level from "../../components/Level/Level";
 import Score from "../../components/Score/Score";
 
-function Game() {
+function GamePage() {
   const [showComponent, setShowComponent] = useState(false);
 
   useEffect(() => {
@@ -26,4 +26,4 @@ function Game() {
   );
 }
 
-export default Game;
+export default GamePage;

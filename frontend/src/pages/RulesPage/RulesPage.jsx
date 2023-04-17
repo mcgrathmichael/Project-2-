@@ -1,7 +1,7 @@
 // import React from "react";
 // import "./RulesPage.scss";
 
-// function Rules() {
+// function RulesPage() {
 //   return (
 //     <div className="container">
 //       <div className="rules">
@@ -34,4 +34,4 @@
 //     </div>
 //   );
 // }
-// export default Rules;
+// export default RulesPage;
