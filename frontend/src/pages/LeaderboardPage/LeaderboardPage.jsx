@@ -1,4 +1,4 @@
-import Leaderboard from "../components/Leaderboard/Leaderboard";
+import Leaderboard from "../../components/Leaderboard/Leaderboard";
 
 function LeaderboardPage() {
   return (
