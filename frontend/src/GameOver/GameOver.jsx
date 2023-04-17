@@ -1,6 +1,5 @@
 import React from "react";
 import "./GameOver.scss";
-import "./GameOver.css";
 
 export default function PopUp() {
   const GameOver = () => {
@@ -16,7 +15,7 @@ export default function PopUp() {
         <h1 className="gameover">Game Over!</h1>
         <h2 className="message">You Lose!</h2>
         <h3 className="Lvl">LvL: 30</h3>
-        <img className="logo" src=".\src\assets\logo.png"></img>
+        <img alt="logo" className="logo" src=".\src\assets\logo.png" />
         <h3 className="score">SCORE: XXX</h3>
 
         <div>
