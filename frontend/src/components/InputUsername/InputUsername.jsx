@@ -1,3 +1,5 @@
+/* eslint-disable react/prop-types */
+
 import React, { useState } from "react";
 import "./InputUsername.scss";
 
@@ -46,5 +48,4 @@ function InputUserName() {
     </div>
   );
 }
-
 export default InputUserName;
