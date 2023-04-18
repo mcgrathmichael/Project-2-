@@ -1,5 +1,5 @@
 /* eslint-disable import/no-extraneous-dependencies */
-import { Outlet, Link } from "react-router-dom";
+import { Outlet, NavLink } from "react-router-dom";
 import "./NavBar.scss";
 import logo from "../../assets/mmlogo.png";
 
@@ -10,13 +10,17 @@ function NavBar() {
         <img src={logo} className="logo" alt="mmlogo" />
         <ul>
           <li>
-            <Link to="/">Home</Link>
+            <NavLink to="/" 
+              className={({ isActive, isPending }) =>
+              isPending ? "pending" : isActive ? "active" : ""}
+            
+            >Home</NavLink>
           </li>
           <li>
-            <Link to="Rules">Rules</Link>
+            <NavLink to="Rules">Rules</NavLink>
           </li>
           <li>
-            <Link to="Leaderboard">Leaderboard</Link>
+            <NavLink to="Leaderboard">Leaderboard</NavLink>
           </li>
         </ul>
       </nav>

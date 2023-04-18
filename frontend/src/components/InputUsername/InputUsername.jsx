@@ -1,6 +1,9 @@
+/* eslint-disable react/prop-types */
+
 import React, { useState } from "react";
 
-function InputUserName() {
+
+function InputUserName({ clicked }) {
   const [name, setName] = useState("");
   const [text, setText] = useState("");
 
@@ -15,13 +18,14 @@ function InputUserName() {
 
   return (
     <div className="input-username">
-      <h1>Votre pseudo : {text} </h1>
+      <h1>Your pseudo : {text} </h1>
       <form className="form-username" onSubmit={handleClick}>
         <input type="text" onChange={handleChange} placeholder="Pseudo" />
-        <button type="submit">Play !</button>
+        <button type="submit" onClick={clicked}>
+          Submit
+        </button>
       </form>
     </div>
   );
 }
-
 export default InputUserName;

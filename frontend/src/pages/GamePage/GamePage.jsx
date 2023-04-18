@@ -9,6 +9,8 @@ import Score from "../../components/Score/Score";
 function GamePage() {
   const [showComponent, setShowComponent] = useState(false);
 
+  
+
   useEffect(() => {
     setInterval(() => {
       setShowComponent(!showComponent);
@@ -16,7 +18,8 @@ function GamePage() {
   }, []);
 
   return (
-    <div className="Game">
+
+    <div className="game">
       <Countdown />
       {showComponent && <Score />}
       {showComponent && <Level />}

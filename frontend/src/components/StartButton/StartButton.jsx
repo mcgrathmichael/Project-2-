@@ -1,11 +1,17 @@
-import React from "react";
+import React, { useState } from "react";
+import { useNavigate  } from "react-router";
 import "./StartButton.scss";
+
 
 function StartButton() {
   // The start button only appears when another button is clicked.
   // Animation should be smooth
-  // Use a UseState to display the button not queryselector
-  const OpenGamePage = () => {};
+  
+// when start btn is clicked, navigate to the game page
+  let navigate = useNavigate(); 
+  const routeChange = () =>{ 
+    navigate(`/game`);
+  }
 
   return (
     <>
@@ -17,8 +23,7 @@ function StartButton() {
         type="submit"
         className="myButton"
         id="start"
-        style={{ display: "none" }}
-        onClick={OpenGamePage}
+        onClick={routeChange}
       >
         Start
       </button>

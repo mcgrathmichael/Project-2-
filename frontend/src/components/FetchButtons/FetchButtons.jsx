@@ -1,23 +1,28 @@
+/* eslint no-lone-blocks: "error" */
+
 import { useState, useEffect } from "react";
 import axios from "axios";
 import _ from "lodash";
 
+// eslint-disable-next-line react/prop-types
 function FetchButtons() {
   const characters = "100";
 
   // List of APIs to fetch data from
   const ApiList = [
     {
+      id: 1,
       name: "Disney",
-      url: `https://api.disneyapi.dev/characters?pageSize=${characters}`,
+      //url: `https://api.disneyapi.dev/characters?pageSize=${characters}`,
       path_to_data: "data.data",
       path_to_image: "imageUrl",
       key: "_id",
       item_name: "name",
     },
     {
+      id: 2,
       name: "Zelda",
-      url: `https://botw-compendium.herokuapp.com/api/v2/all`,
+      //url: `https://botw-compendium.herokuapp.com/api/v2/all`,
       path_to_data: "data.data.equipment",
       path_to_image: "image",
       key: "id",
@@ -47,6 +52,11 @@ function FetchButtons() {
       // Log any errors that occur during the fetch
       console.error(error);
     }
+  };
+
+  const handleClick = (api) => {
+    //fetchData(api.url, api.name);
+    console.log("t")
   };
 
   // Check if the image URL is working properly
@@ -135,28 +145,29 @@ function FetchButtons() {
   };
   // Render component
   // If no API has been fetched, display a list of available APIs to fetch data
-  if (!fetched) {
-    return (
-      <div>
-        <h2>Choisi ton thème !</h2>
-        {/* Map through the list of APIs and display a button for each one */}
-        {ApiList.map((api) => (
-          <button
-            type="button"
-            key={api.name}
-            onClick={() => {
-              // When a button is clicked, fetch data from the corresponding API
-              fetchData(api.url, api.name);
-            }}
-          >
-            {api.name}
-          </button>
-        ))}
-      </div>
-    );
-  }
+  // if (!fetched) {
+
+  return (
+    <div>
+      <h2>Choose your theme : </h2>
+      {/* Map through the list of APIs and display a button for each one */}
+      {ApiList.map((api) =>(
+        <button type="button" key={api.id} onClick={handleClick(api)}
+          // When a button is clicked, fetch data from the corresponding API
+
+          // onClick={() => {
+
+          //   // fetchData(api.url, api.name),
+          // }}
+        >
+          {api.name}
+        </button>
+      ))}
+    </div>
+  );
+
   // If an API has been fetched, display the fetched data
-  return renderApiData();
+  // return renderApiData();
 }
 
 export default FetchButtons;
