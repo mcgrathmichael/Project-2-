@@ -1,7 +1,7 @@
 import "./Leaderboard.scss";
 
 function Leaderboard() {
-  const dados = [
+  const board = [
     {
       id: 1,
       name: "",
@@ -115,7 +115,7 @@ function Leaderboard() {
   return (
     <div className="container">
       <div className="topLeadersList">
-        {dados.map((leader, index) => (
+        {board.map((leader, index) => (
           <div className="leader" key={leader.id}>
             {index + 1 <= 3 && (
               <div className="containerImage">
@@ -137,11 +137,10 @@ function Leaderboard() {
           <div>Score</div>
         </div>
         <div className="list">
-          {dados.map((leader, index) => (
+          {board.map((leader, index) => (
             <div className="player" key={leader.id}>
               <span> {index + 1}</span>
               <div className="user">
-                <img className="image" src={leader.image} alt="user" />
                 <span> {leader.name} </span>
               </div>
               <span> {leader.level} </span>
