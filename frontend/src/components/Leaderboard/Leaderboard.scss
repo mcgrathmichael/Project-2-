@@ -13,14 +13,11 @@
 }
 
 .container {
-  width: 100%;
-  height: 100%;
+  text-align: center;
   background-color: #494a4d;
   margin: auto;
   font-family: "Amatic SC";
   margin: auto;
-  padding: 1rem;
-  border-radius: 5px;
 
   .leaderName {
     position: absolute;
@@ -32,7 +29,7 @@
   }
 
   .player {
-    background-color: #c1bdc975;
+    background-color: #494a4d;
     display: grid;
     grid-template-columns: 0.4fr 3fr 1fr 1fr 1fr 1fr 1fr 1fr;
 
@@ -48,18 +45,33 @@
     font-size: 14px;
     grid-template-columns: 0.4fr 3fr 1fr 1fr 1fr 1fr 1fr 1fr;
     text-align: center;
+    font-size: 25px;
+    color: #99c24d;
   }
 
   .playerslist {
     margin-top: 6rem;
     font-size: 16px;
     overflow: hidden;
-    color: #f18f01;
+    color: #ffffff;
     font-family: "cherry bomb", sans-serif;
 
-    .player:nth-child(odd) {
+    .player:nth-child(1) {
       background-color: #494a4d;
       align-items: center;
+      color: yellow;
+    }
+
+    .player:nth-child(2) {
+      background-color: #494a4d;
+      align-items: center;
+      color: gray;
+    }
+
+    .player:nth-child(3) {
+      background-color: #494a4d;
+      align-items: center;
+      color: brown;
     }
   }
 }

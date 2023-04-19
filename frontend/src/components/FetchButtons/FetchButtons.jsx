@@ -1,6 +1,7 @@
 import { useState, useEffect } from "react";
 import axios from "axios";
 import _ from "lodash";
+import "./FetchButtons.scss";
 
 function FetchButtons() {
   const characters = "100";
@@ -138,7 +139,7 @@ function FetchButtons() {
   if (!fetched) {
     return (
       <div>
-        <h2>Choisi ton thème !</h2>
+        <h2>Choose a theme</h2>
         {/* Map through the list of APIs and display a button for each one */}
         {ApiList.map((api) => (
           <button

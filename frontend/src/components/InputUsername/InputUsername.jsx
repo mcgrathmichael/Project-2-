@@ -1,4 +1,5 @@
 import React, { useState } from "react";
+import "./InputUsername.scss";
 
 function InputUserName() {
   const [name, setName] = useState("");
@@ -15,10 +16,12 @@ function InputUserName() {
 
   return (
     <div className="input-username">
-      <h1>Votre pseudo : {text} </h1>
+      <h1 className="pseudo">Your username: {text} </h1>
       <form className="form-username" onSubmit={handleClick}>
         <input type="text" onChange={handleChange} placeholder="Pseudo" />
-        <button type="submit">Play !</button>
+        <button className="play" type="submit">
+          Validate
+        </button>
       </form>
     </div>
   );

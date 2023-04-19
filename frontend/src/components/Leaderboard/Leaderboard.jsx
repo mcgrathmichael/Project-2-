@@ -4,25 +4,25 @@ function Leaderboard() {
   const board = [
     {
       id: 1,
-      name: "",
+      name: "dfdef",
       level: null,
       xp: null,
     },
     {
       id: 1,
-      name: "",
+      name: "vavvarv",
       level: null,
       xp: null,
     },
     {
       id: 1,
-      name: "",
+      name: "vvavav",
       level: null,
       xp: null,
     },
     {
       id: 1,
-      name: "",
+      name: "dvav",
       level: null,
       xp: null,
     },
@@ -117,22 +117,18 @@ function Leaderboard() {
       <div className="topLeadersList">
         {board.map((leader, index) => (
           <div className="leader" key={leader.id}>
-            {index + 1 <= 3 && (
-              <div className="containerImage">
-                <div className="leaderName">{leader.name}</div>
-              </div>
-            )}
+            {index + 1 <= 3 && <div className="containerImage" />}
           </div>
         ))}
       </div>
 
       <div className="playerslist">
         <div className="table">
-          <div>#</div>
+          <div>★</div>
 
-          <div>Pseudo</div>
+          <div>Player</div>
 
-          <div>LVL</div>
+          <div>MaxLvl</div>
 
           <div>Score</div>
         </div>
@@ -144,7 +140,6 @@ function Leaderboard() {
                 <span> {leader.name} </span>
               </div>
               <span> {leader.level} </span>
-              <span> {leader.lvl} </span>
               <span> {leader.xp} </span>
             </div>
           ))}
