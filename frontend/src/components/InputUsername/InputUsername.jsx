@@ -38,6 +38,7 @@ function InputUserName() {
             handleInputChange(e);
           }}
           placeholder="Entrer votre pseudo"
+          maxLength={15}
         />
         <button className="play" type="submit">
           Validate
