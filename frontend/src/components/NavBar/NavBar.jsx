@@ -2,6 +2,7 @@
 import { Outlet, NavLink } from "react-router-dom";
 import "./NavBar.scss";
 import logo from "../../assets/mmlogo.png";
+import { pullAll } from "lodash";
 
 function NavBar() {
   return (
@@ -10,17 +11,26 @@ function NavBar() {
         <img src={logo} className="logo" alt="mmlogo" />
         <ul>
           <li>
-            <NavLink to="/" 
-              className={({ isActive, isPending }) =>
-              isPending ? "pending" : isActive ? "active" : ""}
-            
-            >Home</NavLink>
+            <NavLink
+              to= {{ 
+                pathname : "/", 
+              // className={({ isActive, isPending }) =>
+              // isPending ? "pending" : isActive ? "active" : ""}  
+              
+              }}
+           >
+              Home
+            </NavLink>
           </li>
           <li>
             <NavLink to="Rules">Rules</NavLink>
           </li>
           <li>
-            <NavLink to="Leaderboard">Leaderboard</NavLink>
+            <NavLink to = {{
+              pathname:"/Leaderboard",
+              
+            }}
+            >Leaderboard </NavLink>
           </li>
         </ul>
       </nav>
