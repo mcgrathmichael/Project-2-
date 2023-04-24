@@ -1,136 +1,26 @@
-function Leaderboard() {
-  const dados = [
+import React from "react";
+import { useLocation } from "react-router-dom";
+
+
+function Leaderboard({playerName}) {
+  const location = useLocation();
+  // const state= this.location.state; 
+ //console.log(location); 
+
+
+  const players = [
     {
       id: 1,
-      name: "",
+      pseudo: {playerName},
       image: "https://cdn-icons-png.flaticon.com/512/186/186037.png",
-      level: null,
-      xp: null,
-    },
-    {
-      id: 1,
-      name: "",
-      image: "https://cdn-icons-png.flaticon.com/512/186/186037.png",
-      level: null,
-      xp: null,
-    },
-    {
-      id: 1,
-      name: "",
-      image: "https://cdn-icons-png.flaticon.com/512/186/186037.png",
-      level: null,
-      xp: null,
-    },
-    {
-      id: 1,
-      name: "",
-      image: "https://cdn-icons-png.flaticon.com/512/186/186037.png",
-      level: null,
-      xp: null,
-    },
-    {
-      id: 1,
-      name: "",
-      image: "https://cdn-icons-png.flaticon.com/512/186/186037.png",
-      level: null,
-      xp: null,
-    },
-    {
-      id: 1,
-      name: "",
-      image: "https://cdn-icons-png.flaticon.com/512/186/186037.png",
-      level: null,
-      xp: null,
-    },
-    {
-      id: 1,
-      name: "",
-      image: "https://cdn-icons-png.flaticon.com/512/186/186037.png",
-      level: null,
-      xp: null,
-    },
-    {
-      id: 1,
-      name: "",
-      image: "https://cdn-icons-png.flaticon.com/512/186/186037.png",
-      level: null,
-      xp: null,
-    },
-    {
-      id: 1,
-      name: "",
-      image: "https://cdn-icons-png.flaticon.com/512/186/186037.png",
-      level: null,
-      xp: null,
-    },
-    {
-      id: 1,
-      name: "",
-      image: "https://cdn-icons-png.flaticon.com/512/186/186037.png",
-      level: null,
-      xp: null,
-    },
-    {
-      id: 1,
-      name: "",
-      image: "https://cdn-icons-png.flaticon.com/512/186/186037.png",
-      level: null,
-      xp: null,
-    },
-    {
-      id: 1,
-      name: "",
-      image: "https://cdn-icons-png.flaticon.com/512/186/186037.png",
-      level: null,
-      xp: null,
-    },
-    {
-      id: 1,
-      name: "",
-      image: "https://cdn-icons-png.flaticon.com/512/186/186037.png",
-      level: null,
-      xp: null,
-    },
-    {
-      id: 1,
-      name: "",
-      image: "https://cdn-icons-png.flaticon.com/512/186/186037.png",
-      level: null,
-      xp: null,
-    },
-    {
-      id: 1,
-      name: "",
-      image: "https://cdn-icons-png.flaticon.com/512/186/186037.png",
-      level: null,
-      xp: null,
-    },
-    {
-      id: 1,
-      name: "",
-      image: "https://cdn-icons-png.flaticon.com/512/186/186037.png",
-      level: null,
-      xp: null,
-    },
-    {
-      id: 1,
-      name: "",
-      image: "https://cdn-icons-png.flaticon.com/512/186/186037.png",
-      level: null,
-      xp: null,
-    },
-    {
-      id: 1,
-      name: "",
-      image: "https://cdn-icons-png.flaticon.com/512/186/186037.png",
-      level: null,
-      xp: null,
+      level: "",
+      score: "",
     },
   ];
   return (
     <div className="container">
       <div className="topLeadersList">
-        {dados.map((leader, index) => (
+        {players.map((leader, index) => (
           <div className="leader" key={leader.id}>
             {index + 1 <= 3 && (
               <div className="containerImage">
@@ -144,7 +34,7 @@ function Leaderboard() {
                   <svg
                     id="crown1"
                     fill="#0f74b5"
-                    data-name="Layer 1"
+                    data-pseudo="Layer 1"
                     xmlns="http://www.w3.org/2000/svg"
                     viewBox="0 0 100 50"
                   >
@@ -167,21 +57,21 @@ function Leaderboard() {
 
           <div>Pseudo</div>
 
-          <div>LVL</div>
+          <div>Level</div>
 
           <div>Score</div>
         </div>
         <div className="list">
-          {dados.map((leader, index) => (
+          {players.map((leader, index) => (
             <div className="player" key={leader.id}>
               <span> {index + 1}</span>
               <div className="user">
                 <img className="image" src={leader.image} alt="user" />
-                <span> {leader.name} </span>
+                <span>{playerName}</span>
               </div>
               <span> {leader.level} </span>
               <span> {leader.lvl} </span>
-              <span> {leader.xp} </span>
+              <span> {leader.score} </span>
             </div>
           ))}
         </div>

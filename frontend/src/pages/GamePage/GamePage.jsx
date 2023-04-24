@@ -1,16 +1,17 @@
 import React, { useState, useEffect } from "react";
+import "./GamePage.scss";
 import StopWatch from "../../components/StopWatch/StopWatch";
 import Countdown from "../../components/Countdown/Countdown";
-import "./GamePage.scss";
 import ShowPictures from "../../components/ShowPictures/ShowPictures";
 import Level from "../../components/Level/Level";
 import Score from "../../components/Score/Score";
 
 function GamePage() {
+  // hide these components for 5 seconds at the start of the game
   const [showComponent, setShowComponent] = useState(false);
 
-  
 
+  //show certain components after 5 sec
   useEffect(() => {
     setInterval(() => {
       setShowComponent(!showComponent);
@@ -18,12 +19,12 @@ function GamePage() {
   }, []);
 
   return (
-
     <div className="game">
       <Countdown />
-      {showComponent && <Score />}
-      {showComponent && <Level />}
+      <Level />
+      
       {showComponent && <StopWatch />}
+      {showComponent && <Score />}
       <ShowPictures />
     </div>
   );

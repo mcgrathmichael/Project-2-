@@ -56,7 +56,7 @@ function FetchButtons() {
 
   const handleClick = (api) => {
     //fetchData(api.url, api.name);
-    console.log("t")
+    //console.log("t")
   };
 
   // Check if the image URL is working properly

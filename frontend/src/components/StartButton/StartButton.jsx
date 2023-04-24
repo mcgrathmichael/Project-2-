@@ -23,7 +23,11 @@ function StartButton() {
         type="submit"
         className="myButton"
         id="start"
-        onClick={routeChange}
+        onClick={() => {
+        routeChange()
+        
+        }}
+
       >
         Start
       </button>
