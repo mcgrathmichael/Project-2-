@@ -21,12 +21,18 @@ function NavBar() {
             </NavLink>
           </li>
           <li>
-            <NavLink to="Rules">Rules</NavLink>
+            <NavLink
+              to={{
+                pathname: "/rules",
+              }}
+            >
+              Rules{" "}
+            </NavLink>
           </li>
           <li>
             <NavLink
               to={{
-                pathname: "/Leaderboard",
+                pathname: "/leaderboard",
               }}
             >
               Leaderboard{" "}

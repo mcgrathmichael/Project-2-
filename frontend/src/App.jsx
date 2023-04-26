@@ -3,8 +3,8 @@ import { BrowserRouter, Routes, Route } from "react-router-dom";
 import NavBar from "./components/NavBar/NavBar";
 import HomePage from "./pages/HomePage/HomePage";
 import GamePage from "./pages/GamePage/GamePage";
-// import RulesPage from "./pages/RulesPage/RulesPage";
 import LeaderboardPage from "./pages/LeaderboardPage/LeaderboardPage";
+import RulesPage from "./pages/RulesPage/RulesPage";
 
 function App() {
   // Only show StopWatch after 5 seconds
@@ -17,6 +17,7 @@ function App() {
             {/* <Route path="/rules" element={<RulesPage />} /> */}
             <Route path="/leaderboard" element={<LeaderboardPage />} />
             <Route path="/game" element={<GamePage />} />
+            <Route path="/rules" element={<RulesPage />} />
           </Route>
         </Routes>
       </BrowserRouter>

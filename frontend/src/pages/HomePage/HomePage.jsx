@@ -1,6 +1,7 @@
 import { useState } from "react";
 import InputUserName from "../../components/InputUsername/InputUsername";
 import StartButton from "../../components/StartButton/StartButton";
+import "./HomePage.scss";
 
 function HomePage() {
   const [playerName, setPlayerName] = useState("");

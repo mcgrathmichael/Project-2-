@@ -1,5 +1,4 @@
 // import React, { useState } from "react";
-import "./Level.scss";
 
 function Level() {
   return (
