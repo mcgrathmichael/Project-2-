@@ -10,8 +10,7 @@ function GamePage() {
   // hide these components for 5 seconds at the start of the game
   const [showComponent, setShowComponent] = useState(false);
 
-
-  //show certain components after 5 sec
+  // show certain components after 5 sec
   useEffect(() => {
     setInterval(() => {
       setShowComponent(!showComponent);
@@ -22,7 +21,7 @@ function GamePage() {
     <div className="game">
       <Countdown />
       <Level />
-      
+
       {showComponent && <StopWatch />}
       {showComponent && <Score />}
       <ShowPictures />

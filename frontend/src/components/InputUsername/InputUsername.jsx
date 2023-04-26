@@ -1,9 +1,9 @@
 /* eslint-disable react/prop-types */
 
-//import Leaderboard from "@components/Leaderboard/Leaderboard";
+//  import Leaderboard from "@components/Leaderboard/Leaderboard";
 import React, { useState } from "react";
 
-function InputUserName({ clicked }) {
+export default function InputUserName() {
   const [name, setName] = useState("");
   const [text, setText] = useState("");
 
@@ -17,15 +17,13 @@ function InputUserName({ clicked }) {
   }
   return (
     <div className="input-username">
-      <h1>Your pseudo : {text} </h1>
+      <h1>Votre pseudo : {text} </h1>
       <form className="form-username" onSubmit={handleClick}>
         <input type="text" onChange={handleChange} placeholder="Pseudo" />
-        <button type="submit" onClick={clicked}>
+        <button type="submit" onClick={handleClick}>
           Submit
         </button>
-        <div></div>
       </form>
     </div>
   );
 }
-export default InputUserName;

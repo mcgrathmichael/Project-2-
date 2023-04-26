@@ -1,5 +1,3 @@
-
-
 .myButton {
   box-shadow: -3px 6px 14px -9px #f19101;
   background: linear-gradient(to bottom, #ffb545 5%, #ffb342 100%);
@@ -25,51 +23,50 @@
   top: 1px;
 }
 
-
 .imageGrid {
- //background-color: #e0a64e;
+  //background-color: #e0a64e;
   position: relative;
   width: calc(160vh - 240px);
   max-width: calc(100vw - 40px);
-  display:grid;
-  grid-gap:10px;
+  display: grid;
+  grid-gap: 10px;
   margin: auto;
   grid-template-columns: repeat(6, 1fr);
 }
 
-.card-outer{
-  perspective:1000px;
+.card-outer {
+  perspective: 1000px;
   height: calc((110vh - 190px) / 6);
   max-height: calc((100vw - 90px) / 6);
 }
-.card{
+.card {
   border-radius: 5px;
-  position: relative;
+  position: absolute;
   width: 100%;
   height: 100%;
-  transform:rotateY(180deg);
+  transform: rotateY(180deg);
   transform-style: preserve-3d;
   transition: all 0.3s;
 }
 
-.front, .back{
+.front,
+.back {
   position: absolute;
   width: 100%;
   height: 100%;
   backface-visibility: hidden;
 }
-.card .front img{
+.card .front img {
   display: block;
   max-width: 100%;
 }
-.card .back{
+.card .back {
   background-color: #99c24d;
-  transform:rotateY(180deg);
+  transform: rotateY(180deg);
 }
-.card-outer.flipped .card{
-  transform:rotateY(0);
+.card-outer.flipped .card {
+  transform: rotateY(0);
 }
-
 
 .success {
   display: block;
@@ -77,9 +74,9 @@
 
 .fail {
   display: none;
-} 
+}
 
 #princess {
   height: 50vh;
-  left: 40%; 
+  left: 40%;
 }

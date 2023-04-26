@@ -6,11 +6,8 @@ nav {
   justify-content: space-between;
   flex-direction: row;
   font-family: "cherry bomb", sans-serif;
-<<<<<<< HEAD
-=======
   font-size: xx-large;
 
->>>>>>> 6306ae9 (few changes to the navbar+navigate to the game page by clicking on start btn)
   ul {
     display: flex;
     justify-content: space-around;
@@ -36,7 +33,18 @@ nav {
   color: #99c24d;
 }
 
-.active:hover{
+.active:hover {
+  text-decoration: overline;
+}
+.pending {
+  color: #494a4d;
+}
+
+.active {
+  color: #99c24d;
+}
+
+.active:hover {
   text-decoration: overline;
 }
 .pending {
