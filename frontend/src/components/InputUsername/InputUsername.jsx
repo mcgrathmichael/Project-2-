@@ -1,29 +1,51 @@
-/* eslint-disable react/prop-types */
-
-//  import Leaderboard from "@components/Leaderboard/Leaderboard";
 import React, { useState } from "react";
+import "./InputUsername.scss";
 
-export default function InputUserName() {
-  const [name, setName] = useState("");
+function InputUserName() {
   const [text, setText] = useState("");
+  const [name, setName] = useState("");
 
-  const handleChange = (e) => {
-    setName(e.target.value);
-  };
+  const specialCharsRegex = /[^\w\s]/;
+  const [inputValue, setInputValue] = useState("");
 
-  function handleClick(e) {
-    setText(name);
-    e.preventDefault();
+  function handleInputChange(event) {
+    const { value } = event.target;
+    if (!specialCharsRegex.test(value)) {
+      setInputValue(value);
+      setText(value);
+    }
+    return value;
+  }
+  function handleSubmit(event) {
+    event.preventDefault();
+    setName(text);
+    setInputValue("");
   }
   return (
     <div className="input-username">
-      <h1>Votre pseudo : {text} </h1>
-      <form className="form-username" onSubmit={handleClick}>
-        <input type="text" onChange={handleChange} placeholder="Pseudo" />
-        <button type="submit" onClick={handleClick}>
-          Submit
+      <h1 className="pseudo">Your username: {name} </h1>
+      <form
+        className="form-username"
+        onSubmit={(e) => {
+          handleSubmit(e);
+        }}
+      >
+        <input
+          type="text"
+          id="input"
+          value={inputValue}
+          onChange={(e) => {
+            handleInputChange(e);
+          }}
+          placeholder="Entrer votre pseudo"
+          maxLength={15}
+        />
+        <button className="play" type="submit">
+          Validate
         </button>
       </form>
     </div>
   );
 }
+
+export default InputUserName;
