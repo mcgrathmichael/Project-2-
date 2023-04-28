@@ -296,7 +296,9 @@ function ShowPictures() {
           return (
             /* eslint-disable */
             <div
-              className={`card-outer ${displayedCard ? "flipped" : ""}`}
+              className={`card-outer ${displayedCard ? "flipped" : ""} ${
+                !showComponent ? "flipped" : ""
+              }`}
               onClick={() => {
                 flipCard(index);
                 turns();
