@@ -5,6 +5,7 @@ import { shuffle } from "lodash";
 import StopWatch from "../StopWatch/StopWatch";
 import Score from "../Score/Score";
 import Countdown from "../Countdown/Countdown";
+
 const imageList = [
   {
     films: [],
