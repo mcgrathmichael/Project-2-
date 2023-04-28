@@ -1,12 +1,12 @@
 import "./GamePage.scss";
-import ShowPictures from "../../components/ShowPictures/ShowPictures";
+import GameLogic from "../../components/GameLogic/GameLogic";
 
 function GamePage() {
   // hide these components for 5 seconds at the start of the game
 
   return (
     <div className="game">
-      <ShowPictures />
+      <GameLogic />
     </div>
   );
 }

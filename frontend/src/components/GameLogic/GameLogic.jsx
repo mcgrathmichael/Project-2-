@@ -1,4 +1,4 @@
-import "./ShowPictures.scss";
+import "./GameLogic.scss";
 import React, { useState, useEffect } from "react";
 import { v4 as uuidv4 } from "uuid"; // import uuid library
 import { shuffle } from "lodash";
@@ -224,13 +224,13 @@ const imageList = [
 //  3 intégrer à l'algo la comparaison de l'uuid
 //  4 intégrer la vérification d'url
 
-function ShowPictures() {
+function GameLogic() {
   const [cards] = useState(shuffle([...imageList, ...imageList])); // shuffle cards everytime
   const [clickedImg, setClickedImg] = useState([]); // the chosen img
   const [matchedCards, setMatchedCards] = useState([]); // array of identical imgs
   const [pairNum, setpairNum] = useState(0); // this shows how many times the player clicked (2 clicks = 1 turn)
   const [num, setNum] = useState(1);
-
+  const [score, setScore] = useState(0);
   // when a card is selected, it stays open until we make a second choice.
   // It no match, both cards flip back
 
@@ -240,16 +240,21 @@ function ShowPictures() {
     } else if (clickedImg.length === 1) {
       const firstChoice = clickedImg[0];
       const secondChoice = index;
-      if (
-        cards[firstChoice] === cards[secondChoice] &&
-        firstChoice !== secondChoice
-      ) {
-        setMatchedCards([...matchedCards, firstChoice, secondChoice]);
-        console.warn("match !");
-      } else {
-        console.warn("not a match !");
+      if (firstChoice !== secondChoice) {
+        if (cards[firstChoice] === cards[secondChoice]) {
+          setMatchedCards([...matchedCards, firstChoice, secondChoice]);
+          console.warn("match !");
+          setScore(score + 500);
+        } else {
+          console.warn("not a match !");
+          if (score === 0 || score <= 300) {
+            setScore(0);
+          } else {
+            setScore(score - 150);
+          }
+        }
+        setClickedImg([...clickedImg, index]);
       }
-      setClickedImg([...clickedImg, index]);
     } else if (clickedImg.length === 2) {
       setClickedImg([index]);
     }
@@ -287,7 +292,7 @@ function ShowPictures() {
     <>
       <Countdown />
       {showComponent && <StopWatch />}
-      {showComponent && <Score />}
+      {showComponent && <Score score={score} />}
       <div className="imageGrid">
         {cards.map((card, index) => {
           const displayedCard =
@@ -300,12 +305,12 @@ function ShowPictures() {
                 !showComponent ? "flipped" : ""
               }`}
               onClick={() => {
-                flipCard(index);
-                turns();
+                showComponent ? flipCard(index) : "";
+                showComponent ? turns() : "";
               }}
             >
               <div className="card">
-                <div className="front">
+                <div className="front" key={`${uuidv4()}`}>
                   <input
                     type="image"
                     className="front"
@@ -316,7 +321,7 @@ function ShowPictures() {
                     id={`${uuidv4()}`}
                   />
                 </div>
-                <div className="back">
+                <div className="back" key={`${uuidv4()}`}>
                   <input type="image" src="" key={`${uuidv4()}`} alt="" />
                 </div>
               </div>
@@ -332,4 +337,4 @@ function ShowPictures() {
     </>
   );
 }
-export default ShowPictures;
+export default GameLogic;
