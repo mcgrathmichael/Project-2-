@@ -1,11 +1,11 @@
 // import { useState } from "react";
 import "./Score.scss";
-
-function Score() {
+/* eslint-disable */
+function Score({ score }) {
   // const [score, setScore] = useState(0);
   return (
     <div className="scoreTitle">
-      <h3> Score : 100 </h3>
+      <h3> Score : {score} </h3>
     </div>
   );
 }
