@@ -237,8 +237,10 @@ function ShowPictures() {
     } else if (clickedImg.length === 1) {
       const firstChoice = clickedImg[0];
       const secondChoice = index;
-
-      if (cards[firstChoice] === cards[secondChoice]) {
+      if (
+        cards[firstChoice] === cards[secondChoice] &&
+        firstChoice !== secondChoice
+      ) {
         setMatchedCards([...matchedCards, firstChoice, secondChoice]);
         console.warn("match !");
       } else {
@@ -271,6 +273,7 @@ function ShowPictures() {
       setpairNum(pairNum + 1);
     }
   };
+
   return (
     <>
       <div className="imageGrid">
@@ -297,6 +300,9 @@ function ShowPictures() {
                     key={`${uuidv4()}`}
                     src={card.imageUrl}
                     id={`${uuidv4()}`}
+                    onClick={(e) => {
+                      isFlipped(e.target);
+                    }}
                   />
                 </div>
                 <div className="back">
