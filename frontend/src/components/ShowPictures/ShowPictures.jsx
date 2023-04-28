@@ -1,8 +1,10 @@
 import "./ShowPictures.scss";
-import React, { useState } from "react";
+import React, { useState, useEffect } from "react";
 import { v4 as uuidv4 } from "uuid"; // import uuid library
 import { shuffle } from "lodash";
-
+import StopWatch from "../StopWatch/StopWatch";
+import Score from "../Score/Score";
+import Countdown from "../Countdown/Countdown";
 const imageList = [
   {
     films: [],
@@ -252,20 +254,19 @@ function ShowPictures() {
     }
   };
 
-  // when the player finds all the pairs, an animation of a princess shows up
-  // if (matchedCards.length === 18) {
-  //   return (
-  //     <div>
-  //       <input
-  //         type="image"
-  //         id="princess"
-  //         className=""
-  //         alt="princess img"
-  //         src={princess}
-  //       />
-  //     </div>
-  //   );
-  // }
+  if (matchedCards.length === 30) {
+    return (
+      <div>
+        <input
+          type="image"
+          id="princess"
+          className=""
+          alt="princess img"
+          src={imageList[30]}
+        />
+      </div>
+    );
+  }
 
   const turns = () => {
     setNum(num + 1);
@@ -273,9 +274,19 @@ function ShowPictures() {
       setpairNum(pairNum + 1);
     }
   };
+  const [showComponent, setShowComponent] = useState(false);
 
+  // show certain components after 5 sec
+  useEffect(() => {
+    setInterval(() => {
+      setShowComponent(!showComponent);
+    }, 5000);
+  }, []);
   return (
     <>
+      <Countdown />
+      {showComponent && <StopWatch />}
+      {showComponent && <Score />}
       <div className="imageGrid">
         {cards.map((card, index) => {
           const displayedCard =
@@ -300,9 +311,6 @@ function ShowPictures() {
                     key={`${uuidv4()}`}
                     src={card.imageUrl}
                     id={`${uuidv4()}`}
-                    onClick={(e) => {
-                      isFlipped(e.target);
-                    }}
                   />
                 </div>
                 <div className="back">
