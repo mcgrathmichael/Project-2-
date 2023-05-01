@@ -1,6 +1,6 @@
 import { useState } from "react";
+import FetchButtons from "../../components/FetchButtons/FetchButtons";
 import InputUserName from "../../components/InputUsername/InputUsername";
-import StartButton from "../../components/StartButton/StartButton";
 import "./HomePage.scss";
 
 function HomePage() {
@@ -9,8 +9,8 @@ function HomePage() {
   return (
     <>
       <h1 className="header_text">Mashup Memo</h1>
+      <FetchButtons />
       <InputUserName playername={playerName} setPlayerName={setPlayerName} />
-      <StartButton />
       {/* <Leaderboard playerName={playerName}/> */}
     </>
   );

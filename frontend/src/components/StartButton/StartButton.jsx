@@ -1,14 +1,15 @@
 import { useNavigate } from "react-router";
 import "./StartButton.scss";
+import PropTypes from "prop-types";
 
-function StartButton() {
+function StartButton({ apiData, apiName, apiList }) {
   // The start button only appears when another button is clicked.
   // Animation should be smooth
 
   // when start btn is clicked, navigate to the game page
   const navigate = useNavigate();
   const routeChange = () => {
-    navigate(`/game`);
+    navigate(`/game`, { state: { apiData, apiName, apiList } });
   };
 
   return (
@@ -30,5 +31,11 @@ function StartButton() {
     </>
   );
 }
-
+StartButton.propTypes = {
+  // eslint-disable-next-line react/forbid-prop-types
+  apiData: PropTypes.object.isRequired,
+  apiName: PropTypes.string.isRequired,
+  // eslint-disable-next-line react/forbid-prop-types
+  apiList: PropTypes.array.isRequired,
+};
 export default StartButton;
