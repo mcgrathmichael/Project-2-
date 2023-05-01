@@ -30,8 +30,14 @@ function GameLogic({ apiName, apiData, apiList }) {
   //       />
   //     ))
   // );
+  //  Shuffle the apiData to not get the same image over and over
+  const maxIndex = apiData.length - 15;
+  const startIndex = Math.floor(Math.random() * (maxIndex + 1));
   const [cards] = useState(
-    shuffle([...apiData.slice(0, 15), ...apiData.slice(0, 15)])
+    shuffle([
+      ...apiData.slice(startIndex, startIndex + 15),
+      ...apiData.slice(startIndex, startIndex + 15),
+    ])
   ); // shuffle cards everytime
   const [clickedImg, setClickedImg] = useState([]); // the chosen img
   const [matchedCards, setMatchedCards] = useState([]); // array of identical imgs
