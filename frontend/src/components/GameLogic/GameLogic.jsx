@@ -30,15 +30,9 @@ function GameLogic({ apiName, apiData, apiList }) {
   //       />
   //     ))
   // );
-
-  // shuffle the fetcheddata to not always have the 15 same cards
-  const shuffledData = shuffle(apiData);
-
-  // get the first 15 elements
-  const selectedData = shuffledData.slice(0, 15);
-
-  // duplicate the selected data to create pairs
-  const cards = shuffle([...selectedData, ...selectedData]); // shuffle cards everytime
+  const [cards] = useState(
+    shuffle([...apiData.slice(0, 15), ...apiData.slice(0, 15)])
+  ); // shuffle cards everytime
   const [clickedImg, setClickedImg] = useState([]); // the chosen img
   const [matchedCards, setMatchedCards] = useState([]); // array of identical imgs
   const [pairNum, setpairNum] = useState(0); // this shows how many times the player clicked (2 clicks = 1 turn)
