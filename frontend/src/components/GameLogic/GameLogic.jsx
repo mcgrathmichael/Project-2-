@@ -30,7 +30,7 @@ function GameLogic({ apiName, apiData, apiList }) {
   //       />
   //     ))
   // );
-  //  Shuffle the apiData to not get the same image over and over
+  //  Shuffle the apiData to not get the same image over and over you can modify the "15" value to change number of cards
   const maxIndex = apiData.length - 15;
   const startIndex = Math.floor(Math.random() * (maxIndex + 1));
   const [cards] = useState(
@@ -73,20 +73,6 @@ function GameLogic({ apiName, apiData, apiList }) {
     }
   };
 
-  if (matchedCards.length === 30) {
-    return (
-      <div>
-        <input
-          type="image"
-          id="princess"
-          className=""
-          alt="princess img"
-          src={apiData[30]}
-        />
-      </div>
-    );
-  }
-
   const turns = () => {
     setNum(num + 1);
     if (num % 2 === 0) {
@@ -101,6 +87,14 @@ function GameLogic({ apiName, apiData, apiList }) {
       setShowComponent(!showComponent);
     }, 5000);
   }, []);
+
+  if (matchedCards.length === cards.length) {
+    return (
+      <div>
+        <h1>You Win</h1>
+      </div>
+    );
+  }
   return (
     <>
       {apiName}
