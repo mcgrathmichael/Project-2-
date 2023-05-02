@@ -1,12 +1,10 @@
 import React, { useState } from "react";
 import PropTypes from "prop-types";
-
 import "./InputUsername.scss";
 
 function InputUserName({ isReady }) {
   const [text, setText] = useState("");
   const [name, setName] = useState("");
-  const [error, setError] = useState("");
   const specialCharsRegex = /[^\w\s]/;
   const [inputValue, setInputValue] = useState("");
 
@@ -24,11 +22,9 @@ function InputUserName({ isReady }) {
     event.preventDefault();
     if (text.length !== 0) {
       isReady(true);
-      setError();
-    } else {
-      setError("you must choose a username first !");
     }
   }
+
   return (
     <div className="input-username">
       <h1 className="pseudo">{name && `Pseudo : ${name}`} </h1>
@@ -39,16 +35,16 @@ function InputUserName({ isReady }) {
         }}
       >
         <input
+          required
           type="text"
           id="input"
           value={inputValue}
           onChange={(e) => {
             handleInputChange(e);
           }}
-          placeholder="Entrer votre pseudo"
+          placeholder="Type in your pseudo"
           maxLength={15}
         />
-        {setError && <p className="error">{error}</p>}
         <button className="play" type="submit">
           Validate
         </button>
@@ -59,6 +55,5 @@ function InputUserName({ isReady }) {
 
 export default InputUserName;
 InputUserName.propTypes = {
-  // eslint-disable-next-line react/forbid-prop-types
   isReady: PropTypes.func.isRequired,
 };

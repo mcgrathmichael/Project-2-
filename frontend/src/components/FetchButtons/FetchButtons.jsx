@@ -2,6 +2,8 @@ import { useState, useEffect } from "react";
 import PropTypes from "prop-types";
 import axios from "axios";
 import _ from "lodash";
+import Error from "../Error/Error";
+
 import StartButton from "../StartButton/StartButton";
 
 function FetchButtons({ isReady }) {
@@ -26,10 +28,13 @@ function FetchButtons({ isReady }) {
       item_name: "name",
     },
   ];
-
   const [apiData, setApiData] = useState([]);
   const [filteredData, setFilteredData] = useState([]);
   const [fetched, setFetched] = useState();
+  const [showError, setShowError] = useState(false);
+  useEffect(() => {
+    setShowError(false);
+  }, [isReady === true]);
   // Fetch data from API and update Fetched state and apiData state
   const fetchData = async (url, name) => {
     if (isReady === true) {
@@ -50,6 +55,8 @@ function FetchButtons({ isReady }) {
         // Log any errors that occur during the fetch
         console.error(error);
       }
+    } else {
+      setShowError(true);
     }
   };
 
@@ -104,77 +111,50 @@ function FetchButtons({ isReady }) {
   // Function to render the data from the API in the last return,  perhaps it could be
   // used to send image to other components ?
   const renderApiData = () => {
-    if (filteredData.length === 0 && isReady) {
+    if (filteredData.length === 0 && fetched) {
       return <div>Loading...</div>;
     }
-    if (isReady)
-      return (
-        <div>
-          <StartButton
-            apiData={filteredData}
-            apiName={fetched}
-            apiList={ApiList}
-          />
-          {/* Button to go back to the list of  APIs */}
-          <button
-            type="button"
-            onClick={() => {
-              setFetched(null);
-              setApiData([]);
-              setFilteredData([]);
-            }}
-          >
-            Précédent
-          </button>
-          {/* Map through the list of available APIs and display images for the fetched data */}
-          {/* {ApiList.map(
-          (api) =>
-            api.name === fetched &&
-            filteredData?.map((item) => (
-              <img
-                key={_.get(item, api.key)}
-                src={_.get(item, api.path_to_image)}
-                alt={_.get(item, api.item_name)}
-                style={{
-                  width: "200px",
-                  height: "300px",
-                  objectFit: "cover",
-                }}
-              />
-            ))
-        )} */}
-        </div>
-      );
-    return null;
+    return (
+      <div>
+        <StartButton
+          apiData={filteredData}
+          apiName={fetched}
+          apiList={ApiList}
+        />
+      </div>
+    );
   };
   // Render component
   // If no API has been fetched, display a list of available APIs to fetch data
-  if (!fetched && isReady) {
-    return (
-      <div>
-        <h2>Choisi ton thème !</h2>
-        {/* Map through the list of APIs and display a button for each one */}
-        {ApiList.map((api) => (
-          <button
-            type="button"
-            key={api.name}
-            onClick={() => {
-              // When a button is clicked, fetch data from the corresponding API
-              fetchData(api.url, api.name);
-            }}
-          >
-            {api.name}
-          </button>
-        ))}
-      </div>
-    );
-  }
+
+  return (
+    <div>
+      <h2>Choose a theme !</h2>
+      {/* Map through the list of APIs and display a button for each one */}
+      {showError === true && (
+        <Error type="you must choose a username first !" />
+      )}
+
+      {ApiList.map((api) => (
+        <button
+          type="button"
+          key={api.name}
+          onClick={() => {
+            // When a button is clicked, fetch data from the corresponding API
+            fetchData(api.url, api.name);
+          }}
+        >
+          {api.name}
+        </button>
+      ))}
+      {renderApiData()}
+    </div>
+  );
+
   // If an API has been fetched, show the start button
-  return renderApiData();
 }
 
 export default FetchButtons;
 FetchButtons.propTypes = {
-  // eslint-disable-next-line react/forbid-prop-types
   isReady: PropTypes.bool.isRequired,
 };
