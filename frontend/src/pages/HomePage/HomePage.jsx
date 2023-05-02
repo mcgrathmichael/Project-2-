@@ -4,14 +4,16 @@ import InputUserName from "../../components/InputUsername/InputUsername";
 import "./HomePage.scss";
 
 function HomePage() {
-  const [playerName, setPlayerName] = useState("");
-  console.warn(playerName);
+  const [ready, setReady] = useState(false);
+  const isReady = (value) => {
+    setReady(value);
+  };
+
   return (
     <>
       <h1 className="header_text">Mashup Memo</h1>
-      <FetchButtons />
-      <InputUserName playername={playerName} setPlayerName={setPlayerName} />
-      {/* <Leaderboard playerName={playerName}/> */}
+      <InputUserName isReady={isReady} />
+      <FetchButtons isReady={ready} />
     </>
   );
 }

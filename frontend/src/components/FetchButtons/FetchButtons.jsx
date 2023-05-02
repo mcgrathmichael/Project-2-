@@ -1,9 +1,10 @@
 import { useState, useEffect } from "react";
+import PropTypes from "prop-types";
 import axios from "axios";
 import _ from "lodash";
 import StartButton from "../StartButton/StartButton";
 
-function FetchButtons() {
+function FetchButtons({ isReady }) {
   const characters = "100";
 
   // List of APIs to fetch data from
@@ -31,22 +32,24 @@ function FetchButtons() {
   const [fetched, setFetched] = useState();
   // Fetch data from API and update Fetched state and apiData state
   const fetchData = async (url, name) => {
-    try {
-      // Send GET request to the API URL
-      const response = await axios({
-        method: "get",
-        url,
-      });
-      // Find the corresponding API object by name in ApiList
-      const api = _.find(ApiList, { name });
-      // Get the data from the response using the API's path_to_data property
-      const data = _.get(response, api.path_to_data);
-      // Update the state with the fetched data and name of the API
-      setApiData(data);
-      setFetched(name);
-    } catch (error) {
-      // Log any errors that occur during the fetch
-      console.error(error);
+    if (isReady === true) {
+      try {
+        // Send GET request to the API URL
+        const response = await axios({
+          method: "get",
+          url,
+        });
+        // Find the corresponding API object by name in ApiList
+        const api = _.find(ApiList, { name });
+        // Get the data from the response using the API's path_to_data property
+        const data = _.get(response, api.path_to_data);
+        // Update the state with the fetched data and name of the API
+        setApiData(data);
+        setFetched(name);
+      } catch (error) {
+        // Log any errors that occur during the fetch
+        console.error(error);
+      }
     }
   };
 
@@ -101,29 +104,30 @@ function FetchButtons() {
   // Function to render the data from the API in the last return,  perhaps it could be
   // used to send image to other components ?
   const renderApiData = () => {
-    if (filteredData.length === 0) {
+    if (filteredData.length === 0 && isReady) {
       return <div>Loading...</div>;
     }
-    return (
-      <div>
-        <StartButton
-          apiData={filteredData}
-          apiName={fetched}
-          apiList={ApiList}
-        />
-        {/* Button to go back to the list of  APIs */}
-        <button
-          type="button"
-          onClick={() => {
-            setFetched(null);
-            setApiData([]);
-            setFilteredData([]);
-          }}
-        >
-          Précédent
-        </button>
-        {/* Map through the list of available APIs and display images for the fetched data */}
-        {/* {ApiList.map(
+    if (isReady)
+      return (
+        <div>
+          <StartButton
+            apiData={filteredData}
+            apiName={fetched}
+            apiList={ApiList}
+          />
+          {/* Button to go back to the list of  APIs */}
+          <button
+            type="button"
+            onClick={() => {
+              setFetched(null);
+              setApiData([]);
+              setFilteredData([]);
+            }}
+          >
+            Précédent
+          </button>
+          {/* Map through the list of available APIs and display images for the fetched data */}
+          {/* {ApiList.map(
           (api) =>
             api.name === fetched &&
             filteredData?.map((item) => (
@@ -139,12 +143,13 @@ function FetchButtons() {
               />
             ))
         )} */}
-      </div>
-    );
+        </div>
+      );
+    return null;
   };
   // Render component
   // If no API has been fetched, display a list of available APIs to fetch data
-  if (!fetched) {
+  if (!fetched && isReady) {
     return (
       <div>
         <h2>Choisi ton thème !</h2>
@@ -169,3 +174,7 @@ function FetchButtons() {
 }
 
 export default FetchButtons;
+FetchButtons.propTypes = {
+  // eslint-disable-next-line react/forbid-prop-types
+  isReady: PropTypes.bool.isRequired,
+};

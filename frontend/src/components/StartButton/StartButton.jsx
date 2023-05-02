@@ -33,9 +33,9 @@ function StartButton({ apiData, apiName, apiList }) {
 }
 StartButton.propTypes = {
   // eslint-disable-next-line react/forbid-prop-types
-  apiData: PropTypes.object.isRequired,
+  apiData: PropTypes.arrayOf(PropTypes.object).isRequired,
   apiName: PropTypes.string.isRequired,
   // eslint-disable-next-line react/forbid-prop-types
-  apiList: PropTypes.array.isRequired,
+  apiList: PropTypes.arrayOf(PropTypes.object).isRequired,
 };
 export default StartButton;
