@@ -1,37 +1,28 @@
-input {
-  display: flex;
-  justify-content: center;
-  background-color: white;
-  font-family: "cherry bomb", sans-serif;
-  border-radius: 4px;
-  box-shadow: 5px 4px 24px 5px #f18f01;
+@import "../Utils/Utils.scss";
+.play {
+  background-color: $green;
+  border-radius: 0;
+  border-top-right-radius: 10px;
+  border-bottom-right-radius: 10px;
+  border: none;
 }
-
-.pseudo {
-  color: white;
-  font-size: 24px;
+.input-text {
+  display: flex;
+  background-color: $white;
+  border-top-left-radius: 10px;
+  border-bottom-left-radius: 10px;
+  border: none;
+  padding: 10px;
 }
 
 .form-username {
   display: flex;
-  justify-content: center;
-}
-
-.play {
-  border-radius: 4px;
-  width: 70px;
-  height: 50px;
-  background-color: #99c24d;
-  box-shadow: 5px 4px 24px 5px #f18f01;
-  color: white;
-}
-
-button {
-  font-family: "cherry bomb", sans-serif;
-  background-color: #f18f01;
-  color: white;
-  width: 70px;
-  height: 40px;
+  @include object-shadow;
   border-radius: 10px;
-  text-shadow: 1px 1px 3px #000000;
+}
+.pseudo {
+  @include text-size;
+  color: $white;
+  @include text-shadow;
+  margin-bottom: 30px;
 }

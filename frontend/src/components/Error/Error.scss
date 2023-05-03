@@ -1,5 +1,4 @@
+@import "../Utils/Utils.scss";
 .error {
-  color: red;
-  border-style: groove;
-  text-align: center;
+  color: $red;
 }

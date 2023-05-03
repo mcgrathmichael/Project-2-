@@ -1,0 +1,33 @@
+$green: #99c24d;
+$orange: #f18f01;
+$black: #494a4d;
+$red: #ff4343;
+$white: #fff;
+
+@mixin title {
+  font-size: 5vw;
+  letter-spacing: 1.3px;
+}
+@mixin text-nav {
+  font-size: 2vw;
+  letter-spacing: 1.3px;
+}
+@mixin text-size {
+  font-size: 1.7vw;
+  letter-spacing: 1.3px;
+  font-weight: 100;
+}
+
+@mixin absolute-center() {
+  position: absolute;
+  left: 50%;
+  top: 50%;
+  transform: translate(-50%, -50%);
+}
+@mixin text-shadow() {
+  text-shadow: 0px 4px 4px rgba(0, 0, 0, 0.65);
+}
+
+@mixin object-shadow() {
+  box-shadow: 0px 3px 4px rgba(0, 0, 0, 0.65);
+}

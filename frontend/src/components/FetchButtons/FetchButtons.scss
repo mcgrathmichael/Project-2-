@@ -1,5 +1,7 @@
-h2 {
-  font-family: "cherry bomb", sans-serif;
-  color: white;
-  text-shadow: 1px 1px 3px #000000;
+@import "../Utils/Utils.scss";
+
+.themetitle {
+  @include text-size;
+  color: $white;
+  @include text-shadow;
 }
