@@ -6,7 +6,7 @@ function Restart() {
   return (
     <>
       {" "}
-      <button type="submit" className="myButton" onClick={restart}>
+      <button type="submit" id="restart" onClick={restart}>
         Restart
       </button>
     </>
