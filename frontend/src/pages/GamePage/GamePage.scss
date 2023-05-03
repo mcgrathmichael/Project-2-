@@ -1,7 +1,10 @@
 @import "@components/Utils/Utils.scss";
 
-#restart {
-    position: absolute; 
-    top: 23%;
-    left: 5%; 
+.restart_container {
+display: flex;
+justify-content: center;
+position: absolute;
+bottom: 5%;
+left: 46%; 
 }
+
