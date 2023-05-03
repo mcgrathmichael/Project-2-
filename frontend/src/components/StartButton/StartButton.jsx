@@ -21,14 +21,14 @@ function StartButton({ apiData, apiName, apiList }) {
   };
 
   return (
-    <>
+    <div className="start-container">
       {/* Once the user enters his name and chosses a theme and clicks the Start btn, 
     he can go the game route */}
 
       {/* onClick, timer starts */}
       <button
         type="submit"
-        className="myButton"
+        className="start-button"
         id="start"
         onClick={() => {
           routeChange();
@@ -37,7 +37,7 @@ function StartButton({ apiData, apiName, apiList }) {
         Start
       </button>
       {error === true && <Error type="you must choose a theme first !" />}
-    </>
+    </div>
   );
 }
 StartButton.defaultProps = {
