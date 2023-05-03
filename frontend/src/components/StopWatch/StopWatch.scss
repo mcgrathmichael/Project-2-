@@ -3,11 +3,12 @@
 
 .stopwatch-container {
   display: flex;
+  justify-content: center;
   margin-top: 10px;
   align-items: flex-end;
   position: absolute;
-  left: 5%;
-  top: 35%;
+  left: 45%;
+  top: 5%;
   z-index: 1;
 
   }
@@ -17,7 +18,7 @@
   font-size: 30px;
   font-weight: 500;
   color: $orange; 
-  margin-top: 70px;
+  margin-top: 60px;
  @include text-shadow; 
 }
 

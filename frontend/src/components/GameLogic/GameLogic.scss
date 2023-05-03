@@ -7,7 +7,8 @@
   display: grid;
   grid-gap: 10px;
   margin: auto;
-  grid-template-columns: repeat(6, 1fr);
+  margin-top: 80px; 
+  grid-template-columns: repeat(7, 1fr);
 }
 
 .card-outer {
@@ -37,15 +38,18 @@
   max-width: 100%;
 }
 .card .back {
-  background-color: #99c24d;
+  background-color: $green;
   transform: rotateY(180deg);
 }
 .card-outer.flipped .card {
   transform: rotateY(0);
 }
 
-.ClickCounterBtn{
+.turns{
   position: absolute;
-  top: 45%; 
-  right: 3%; 
+  top: 23%; 
+  left: 3%; 
+  @include text-size;
+  @include text-shadow; 
+  color: $white;
 }
