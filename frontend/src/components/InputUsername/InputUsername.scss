@@ -5,6 +5,8 @@
   border-top-right-radius: 10px;
   border-bottom-right-radius: 10px;
   border: none;
+  width: 30%;
+  min-width: 8rem;
 }
 .input-text {
   display: flex;
@@ -13,12 +15,15 @@
   border-bottom-left-radius: 10px;
   border: none;
   padding: 10px;
+  width: 70%;
+  min-width: 10rem;
 }
 
 .form-username {
   display: flex;
   @include object-shadow;
   border-radius: 10px;
+  width: 50%;
 }
 .pseudo {
   @include text-size;

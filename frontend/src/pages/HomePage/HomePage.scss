@@ -13,6 +13,9 @@
   align-items: center;
   flex-direction: column;
   margin-bottom: 60px;
+  width: 60%;
+  margin-left: auto;
+  margin-right: auto;
 }
 
 .fetch-container {
@@ -26,13 +29,16 @@
 }
 .Zelda {
   width: 30%;
+  min-width: 7rem;
 }
 .Disney {
   width: 30%;
+  min-width: 7rem;
 }
 .start-button {
   background-color: $green;
   width: 50%;
+  min-width: 7rem;
 }
 .fetch-buttons-container {
   display: flex;
@@ -45,11 +51,9 @@
   flex-direction: column-reverse;
   align-items: center;
   margin-top: 70px;
-  width: 350px;
 }
 .themetitle {
   margin-bottom: 40px;
 }
 .error {
-  margin-bottom: 10px;
 }
