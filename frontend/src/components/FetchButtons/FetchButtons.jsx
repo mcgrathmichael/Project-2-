@@ -3,7 +3,7 @@ import PropTypes from "prop-types";
 import axios from "axios";
 import _ from "lodash";
 import Error from "../Error/Error";
-
+import "./FetchButtons.scss";
 import StartButton from "../StartButton/StartButton";
 
 function FetchButtons({ isReady }) {
@@ -128,25 +128,28 @@ function FetchButtons({ isReady }) {
   // If no API has been fetched, display a list of available APIs to fetch data
 
   return (
-    <div>
-      <h2>Choose a theme !</h2>
+    <div className="fetch-container">
+      <h2 className="themetitle">Choose a theme !</h2>
       {/* Map through the list of APIs and display a button for each one */}
       {showError === true && (
         <Error type="you must choose a username first !" />
       )}
 
-      {ApiList.map((api) => (
-        <button
-          type="button"
-          key={api.name}
-          onClick={() => {
-            // When a button is clicked, fetch data from the corresponding API
-            fetchData(api.url, api.name);
-          }}
-        >
-          {api.name}
-        </button>
-      ))}
+      <div className="fetch-buttons-container">
+        {ApiList.map((api) => (
+          <button
+            className={api.name}
+            type="button"
+            key={api.name}
+            onClick={() => {
+              // When a button is clicked, fetch data from the corresponding API
+              fetchData(api.url, api.name);
+            }}
+          >
+            {api.name}
+          </button>
+        ))}
+      </div>
       {renderApiData()}
     </div>
   );

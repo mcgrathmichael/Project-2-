@@ -27,7 +27,7 @@ function InputUserName({ isReady }) {
 
   return (
     <div className="input-username">
-      <h1 className="pseudo">{name && `Pseudo : ${name}`} </h1>
+      <h1 className="pseudo">{name && `Hello ${name}!`} </h1>
       <form
         className="form-username"
         onSubmit={(e) => {
@@ -38,11 +38,12 @@ function InputUserName({ isReady }) {
           required
           type="text"
           id="input"
+          className="input-text"
           value={inputValue}
           onChange={(e) => {
             handleInputChange(e);
           }}
-          placeholder="Type in your pseudo"
+          placeholder="   Type in your pseudo"
           maxLength={15}
         />
         <button className="play" type="submit">

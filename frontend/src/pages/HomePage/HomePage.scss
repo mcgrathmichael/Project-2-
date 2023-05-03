@@ -1,18 +1,55 @@
-.header_text {
-  // text-align: center;
-  // color: #f19101;
-  // font-weight: bold;
-  // font-family: 'cherry bomb', sans-serif;
+@import "../../components/Utils/Utils.scss";
 
-  color: #f18f01;
+.header_text {
+  @include title;
+  color: $orange;
+  @include text-shadow;
   text-align: center;
-  vertical-align: text-top;
-  font-size: 48px;
-  font-family: "cherry bomb", sans-serif;
-  line-height: auto;
-  border-style: hidden;
-  outline: none;
+  margin-bottom: 60px;
+  margin-top: 60px;
+}
+.input-username {
+  display: flex;
+  align-items: center;
+  flex-direction: column;
+  margin-bottom: 60px;
+}
+
+.fetch-container {
+  width: 100%;
+  display: flex;
+  flex-flow: column wrap;
+  align-content: center;
+  margin: 0 auto;
+  align-items: center;
+  justify-content: space-evenly;
+}
+.Zelda {
+  width: 30%;
+}
+.Disney {
+  width: 30%;
+}
+.start-button {
+  background-color: $green;
+  width: 50%;
+}
+.fetch-buttons-container {
+  display: flex;
+  flex-direction: row;
+  width: 30%;
+  justify-content: space-evenly;
+}
+.start-container {
+  display: flex;
+  flex-direction: column-reverse;
+  align-items: center;
+  margin-top: 70px;
   width: 350px;
-  margin-left: auto;
-  margin-right: auto;
+}
+.themetitle {
+  margin-bottom: 40px;
+}
+.error {
+  margin-bottom: 10px;
 }
