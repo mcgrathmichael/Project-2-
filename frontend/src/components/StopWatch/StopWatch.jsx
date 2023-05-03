@@ -3,8 +3,10 @@ import "./StopWatch.scss";
 
 function StopWatch() {
   const [time, setTime] = useState(300);
+
   const restart = () => {
     setTime(300);
+    window.location.reload();
   };
   useEffect(() => {
     const timer = setInterval(() => {
