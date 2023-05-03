@@ -38,6 +38,8 @@ function FetchButtons({ isReady }) {
   // Fetch data from API and update Fetched state and apiData state
   const fetchData = async (url, name) => {
     if (isReady === true) {
+      setFetched();
+      setFilteredData([]);
       try {
         // Send GET request to the API URL
         const response = await axios({
