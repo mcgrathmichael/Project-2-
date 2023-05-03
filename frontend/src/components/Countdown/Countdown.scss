@@ -1,8 +1,11 @@
-// .timer-wrapper {
-//   position: absolute;
-//   right: 2%;
-//   font-family: "cherry bomb", sans-serif;
-// }
+@import "../Utils/Utils.scss";
+
+
+.timer-wrapper {
+  position: absolute;
+  right: 2%;
+  @include text-size; 
+}
 
 // .timer {
 //   font-family: "cherry bomb", sans-serif;

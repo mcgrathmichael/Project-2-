@@ -1,5 +1,7 @@
-// $backgroundColor: #494a4d;
+@import "@components/Utils/Utils.scss";
 
-// body {
-//   background-color: $backgroundColor;
-// }
+#restart {
+    position: absolute; 
+    top: 23%;
+    left: 5%; 
+}
