@@ -1,16 +1,16 @@
 import React, { useState, useEffect } from "react";
 import "./StopWatch.scss";
+import PropTypes from "prop-types";
 
-function StopWatch() {
-  const [time, setTime] = useState(300);
-  const restart = () => {
-    setTime(300);
-  };
+function StopWatch({ isFinished }) {
+  const [time, setTime] = useState(3);
+
   useEffect(() => {
     const timer = setInterval(() => {
       setTime((timee) => {
         if (timee === 0) {
           clearInterval(timer);
+          isFinished(true);
           return 0;
         }
         return timee - 1;
@@ -24,11 +24,11 @@ function StopWatch() {
         {`${Math.floor(time / 60)}`.padStart(2, 0)}:
         {`${time % 60}`.padStart(2, 0)}
       </p>
-      <button type="submit" className="myButton" onClick={restart}>
-        Restart
-      </button>
     </div>
   );
 }
 
 export default StopWatch;
+StopWatch.propTypes = {
+  isFinished: PropTypes.func.isRequired,
+};

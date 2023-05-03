@@ -1,6 +1,6 @@
-// import { useState } from "react";
 import "./Score.scss";
-/* eslint-disable */
+import PropTypes from "prop-types";
+
 function Score({ score }) {
   // const [score, setScore] = useState(0);
   return (
@@ -11,3 +11,6 @@ function Score({ score }) {
 }
 
 export default Score;
+Score.propTypes = {
+  score: PropTypes.number.isRequired,
+};
