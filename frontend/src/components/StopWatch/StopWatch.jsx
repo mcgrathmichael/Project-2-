@@ -1,11 +1,12 @@
 import React, { useState, useEffect } from "react";
 import "./StopWatch.scss";
+import PropTypes from "prop-types";
 
-function StopWatch() {
-  const [time, setTime] = useState(300);
+function StopWatch({ isFinished }) {
+  const [time, setTime] = useState(10);
 
   const restart = () => {
-    setTime(300);
+    setTime(10);
     window.location.reload();
   };
   useEffect(() => {
@@ -13,6 +14,8 @@ function StopWatch() {
       setTime((timee) => {
         if (timee === 0) {
           clearInterval(timer);
+          isFinished(true);
+
           return 0;
         }
         return timee - 1;
@@ -34,3 +37,6 @@ function StopWatch() {
 }
 
 export default StopWatch;
+StopWatch.propTypes = {
+  isFinished: PropTypes.func.isRequired,
+};

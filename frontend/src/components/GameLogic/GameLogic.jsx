@@ -23,10 +23,14 @@ function GameLogic({ apiName, apiData, apiList }) {
   const [score, setScore] = useState(0);
   // when a card is selected, it stays open until we make a second choice.
   // It no match, both cards flip back
+  const [finished, setFinished] = useState(false);
 
+  const isFinished = (value) => {
+    setFinished(value);
+  };
   const [showComponent, setShowComponent] = useState(false);
   const flipCard = (index) => {
-    if (showComponent) {
+    if (showComponent && finished !== true) {
       if (clickedImg.length === 0) {
         setClickedImg([index]);
       } else if (clickedImg.length === 1) {
@@ -61,6 +65,13 @@ function GameLogic({ apiName, apiData, apiList }) {
     }, 5000);
   }, []);
 
+  //  When Timer End
+  useEffect(() => {
+    setScore(0);
+    setMatchedCards([]);
+    setTurns(0);
+  }, [finished]);
+
   if (matchedCards.length === cards.length) {
     return (
       <div>
@@ -68,11 +79,13 @@ function GameLogic({ apiName, apiData, apiList }) {
       </div>
     );
   }
+
   return (
     <>
       <Countdown />
-      {showComponent && <StopWatch />}
+      {showComponent && <StopWatch isFinished={isFinished} />}
       {showComponent && <Score score={score} />}
+      <h1>{finished}</h1>
       <div className="imageGrid">
         {cards.map((card, index) => {
           const displayedCard =
