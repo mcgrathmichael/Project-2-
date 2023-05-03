@@ -3,19 +3,14 @@ import "./StopWatch.scss";
 import PropTypes from "prop-types";
 
 function StopWatch({ isFinished }) {
-  const [time, setTime] = useState(10);
+  const [time, setTime] = useState(3);
 
-  const restart = () => {
-    setTime(10);
-    window.location.reload();
-  };
   useEffect(() => {
     const timer = setInterval(() => {
       setTime((timee) => {
         if (timee === 0) {
           clearInterval(timer);
           isFinished(true);
-
           return 0;
         }
         return timee - 1;
@@ -29,9 +24,6 @@ function StopWatch({ isFinished }) {
         {`${Math.floor(time / 60)}`.padStart(2, 0)}:
         {`${time % 60}`.padStart(2, 0)}
       </p>
-      <button type="submit" className="myButton" onClick={restart}>
-        Restart
-      </button>
     </div>
   );
 }

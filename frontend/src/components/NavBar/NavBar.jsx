@@ -1,4 +1,3 @@
-/* eslint-disable import/no-extraneous-dependencies */
 import { Outlet, NavLink } from "react-router-dom";
 import "./NavBar.scss";
 import logo from "../../assets/mmlogo.png";
@@ -13,8 +12,6 @@ function NavBar() {
             <NavLink
               to={{
                 pathname: "/",
-                // className={({ isActive, isPending }) =>
-                // isPending ? "pending" : isActive ? "active" : ""}
               }}
             >
               Home

@@ -1,11 +1,12 @@
 import "./GameLogic.scss";
 import React, { useState, useEffect } from "react";
-import { v4 as uuidv4 } from "uuid"; // import uuid library
 import { shuffle, _ } from "lodash";
 import PropTypes from "prop-types";
+import Restart from "../Restart/Restart";
 import StopWatch from "../StopWatch/StopWatch";
 import Score from "../Score/Score";
 import Countdown from "../Countdown/Countdown";
+import GamePopUp from "../GameOver/GamePopUp";
 
 function GameLogic({ apiName, apiData, apiList }) {
   //  Shuffle the apiData to not get the same image over and over you can modify the "15" value to change number of cards
@@ -24,6 +25,7 @@ function GameLogic({ apiName, apiData, apiList }) {
   // when a card is selected, it stays open until we make a second choice.
   // It no match, both cards flip back
   const [finished, setFinished] = useState(false);
+  const [win, setWin] = useState();
 
   const isFinished = (value) => {
     setFinished(value);
@@ -67,25 +69,21 @@ function GameLogic({ apiName, apiData, apiList }) {
 
   //  When Timer End
   useEffect(() => {
-    setScore(0);
-    setMatchedCards([]);
-    setTurns(0);
+    setWin(false);
   }, [finished]);
 
   if (matchedCards.length === cards.length) {
-    return (
-      <div>
-        <h1>You Win</h1>
-      </div>
-    );
+    setFinished(true);
+    setWin(true);
   }
 
   return (
     <>
+      {finished && <GamePopUp win={win} score={score} turns={turns} />}
       <Countdown />
+      {!finished && <Restart />}
       {showComponent && <StopWatch isFinished={isFinished} />}
       {showComponent && <Score score={score} />}
-      <h1>{finished}</h1>
       <div className="imageGrid">
         {cards.map((card, index) => {
           const displayedCard =
@@ -93,7 +91,8 @@ function GameLogic({ apiName, apiData, apiList }) {
             matchedCards.indexOf(index) !== -1;
           return (
             <div
-              key={`${uuidv4()}`}
+              /* eslint-disable */
+              key={`card_id_${index}`}
               role="presentation"
               className={`card-outer ${displayedCard ? "flipped" : ""} ${
                 !showComponent ? "flipped" : ""
