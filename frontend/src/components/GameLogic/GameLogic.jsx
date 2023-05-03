@@ -301,6 +301,7 @@ function GameLogic() {
           return (
             /* eslint-disable */
             <div
+              key={`card_id_${index}`}
               className={`card-outer ${displayedCard ? "flipped" : ""} ${
                 !showComponent ? "flipped" : ""
               }`}
