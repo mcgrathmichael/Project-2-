@@ -1,10 +1,8 @@
-import React, { useState, useEffect } from "react";
+import React, { useEffect } from "react";
 import "./StopWatch.scss";
 import PropTypes from "prop-types";
 
-function StopWatch({ isFinished, win }) {
-  const [time, setTime] = useState(120);
-
+function StopWatch({ isFinished, win, time, setTime }) {
   useEffect(() => {
     if (win !== true) {
       const timer = setInterval(() => {
@@ -12,7 +10,6 @@ function StopWatch({ isFinished, win }) {
           if (timee === 0 && !win) {
             clearInterval(timer);
             isFinished(true);
-            return 0;
           }
           return timee - 1;
         });
@@ -37,4 +34,6 @@ StopWatch.defaultProps = {
 StopWatch.propTypes = {
   isFinished: PropTypes.func.isRequired,
   win: PropTypes.bool,
+  time: PropTypes.number.isRequired,
+  setTime: PropTypes.func.isRequired,
 };

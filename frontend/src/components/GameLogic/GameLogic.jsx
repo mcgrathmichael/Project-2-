@@ -7,6 +7,7 @@ import StopWatch from "../StopWatch/StopWatch";
 import Score from "../Score/Score";
 import Countdown from "../Countdown/Countdown";
 import GamePopUp from "../GameOver/GamePopUp";
+import SoundManager from "../SoundManager/SoundManager";
 
 function GameLogic({ apiName, apiData, apiList }) {
   //  Shuffle the apiData to not get the same image over and over you can modify the "15" value to change number of cards
@@ -27,10 +28,12 @@ function GameLogic({ apiName, apiData, apiList }) {
   const [finished, setFinished] = useState(false);
   const [win, setWin] = useState();
   const [endGame, setEndGame] = useState(false);
+  const [time, setTime] = useState(120);
 
   const isFinished = (value) => {
     setFinished(value);
   };
+
   const [showComponent, setShowComponent] = useState(false);
   const flipCard = (index) => {
     if (showComponent && finished !== true) {
@@ -45,8 +48,11 @@ function GameLogic({ apiName, apiData, apiList }) {
             setMatchedCards([...matchedCards, firstChoice, secondChoice]);
             console.warn("match !");
             setScore(score + 500);
+            SoundManager("pairfound");
           } else {
             console.warn("not a match !");
+            SoundManager("badpair");
+
             if (score === 0 || score <= 150) {
               setScore(0);
             } else {
@@ -63,6 +69,7 @@ function GameLogic({ apiName, apiData, apiList }) {
 
   // show certain components after 5 sec
   useEffect(() => {
+    SoundManager("10sec");
     setInterval(() => {
       setShowComponent(!showComponent);
     }, 5000);
@@ -73,6 +80,7 @@ function GameLogic({ apiName, apiData, apiList }) {
     if (showComponent && win !== true && endGame !== true) {
       setWin(false);
       setEndGame(true);
+      SoundManager("losepopup");
     }
   }, [finished]);
 
@@ -80,6 +88,7 @@ function GameLogic({ apiName, apiData, apiList }) {
     if (matchedCards.length === cards.length) {
       setEndGame(true);
       setWin(true);
+      SoundManager("gamewin");
     }
   }, [score]);
 
@@ -89,9 +98,15 @@ function GameLogic({ apiName, apiData, apiList }) {
         <GamePopUp win={win} score={score} turns={turns} finished={finished} />
       )}
       {!showComponent && <Countdown />}
-      {!endGame && showComponent && <Restart />}
+      {!endGame && showComponent && <Restart show={false} />}
       {!endGame && showComponent && (
-        <StopWatch isFinished={isFinished} win={win} />
+        <StopWatch
+          isFinished={isFinished}
+          win={win}
+          endGame={endGame}
+          time={time}
+          setTime={setTime}
+        />
       )}
       {!endGame && showComponent && <Score score={score} />}
       {!endGame && (
