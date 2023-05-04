@@ -21,7 +21,7 @@ function HomePage() {
           <span style={{ "--i": -1 }}>h</span>
           <span style={{ "--i": 0 }}>u</span>
           <span style={{ "--i": 1 }}>p</span>
-          <span></span>
+          <span />
           <span style={{ "--i": 2 }}>M</span>
           <span style={{ "--i": 3 }}>e</span>
           <span style={{ "--i": 4 }}>m</span>

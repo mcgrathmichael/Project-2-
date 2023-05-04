@@ -17,7 +17,6 @@ const renderTime = ({ remainingTime }) => {
 };
 
 function Countdown() {
-
   return (
     <div className="timer-wrapper">
       <CountdownCircleTimer
