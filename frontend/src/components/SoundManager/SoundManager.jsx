@@ -2,7 +2,7 @@ import pairfound from "../../assets/sounds/pairfound.wav";
 import timer from "../../assets/sounds/10sectimer.mp3";
 import badpair from "../../assets/sounds/badpair.mp3";
 import gamestart from "../../assets/sounds/GameStart.wav";
-import gamewin from "../../assets/sounds/GameWin.wav";
+import gamewin from "../../assets/sounds/Win.wav";
 import losepopup from "../../assets/sounds/GameOver.wav";
 
 function SoundManager(sound) {

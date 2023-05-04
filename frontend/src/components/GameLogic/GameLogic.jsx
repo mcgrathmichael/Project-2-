@@ -66,13 +66,16 @@ function GameLogic({ apiName, apiData, apiList }) {
       }
     }
   };
+  const hideaddons = () => {
+    setShowComponent(!showComponent);
+    SoundManager("gamestart");
+  };
 
   // show certain components after 5 sec
   useEffect(() => {
     SoundManager("10sec");
-    setInterval(() => {
-      setShowComponent(!showComponent);
-    }, 5000);
+    const timeoutId = setTimeout(hideaddons, 5000);
+    return () => clearTimeout(timeoutId); // Clear the timeout when the component unmounts
   }, []);
 
   //  When Timer End
