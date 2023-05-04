@@ -3,7 +3,7 @@ import "./StopWatch.scss";
 import PropTypes from "prop-types";
 
 function StopWatch({ isFinished }) {
-  const [time, setTime] = useState(3);
+  const [time, setTime] = useState(120);
 
   useEffect(() => {
     const timer = setInterval(() => {

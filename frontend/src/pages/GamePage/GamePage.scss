@@ -1,5 +1,10 @@
-// $backgroundColor: #494a4d;
+@import "@components/Utils/Utils.scss";
 
-// body {
-//   background-color: $backgroundColor;
-// }
+.restart_container {
+display: flex;
+justify-content: center;
+position: absolute;
+bottom: 5%;
+left: 46%; 
+}
+
