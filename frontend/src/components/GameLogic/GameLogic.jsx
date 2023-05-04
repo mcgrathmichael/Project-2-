@@ -10,12 +10,12 @@ import GamePopUp from "../GameOver/GamePopUp";
 
 function GameLogic({ apiName, apiData, apiList }) {
   //  Shuffle the apiData to not get the same image over and over you can modify the "15" value to change number of cards
-  const maxIndex = apiData.length - 14;
+  const maxIndex = apiData.length - 2;
   const startIndex = Math.floor(Math.random() * (maxIndex + 1));
   const [cards] = useState(
     shuffle([
-      ...apiData.slice(startIndex, startIndex + 14),
-      ...apiData.slice(startIndex, startIndex + 14),
+      ...apiData.slice(startIndex, startIndex + 2),
+      ...apiData.slice(startIndex, startIndex + 2),
     ])
   ); // shuffle cards everytime
   const [clickedImg, setClickedImg] = useState([]); // the chosen img
@@ -128,9 +128,7 @@ function GameLogic({ apiName, apiData, apiList }) {
         })}
       </div>
       <div className="ClickCounterBtn">
-        <span className="turns">
-          {turns} Turns
-        </span>
+        <span className="turns">{turns} Turns</span>
       </div>
     </>
   );
