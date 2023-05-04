@@ -1,29 +1,24 @@
-// .stopwatch-container {
-//   /* background-color: blue; */
-//   width: 10%;
-//   display: flex;
-//   justify-content: space-between;
-//   flex-direction: row-reverse;
-//   margin-top: 10px;
-//   align-items: flex-end;
-//   position: relative;
-//   z-index: 1;
-// }
+@import "../Utils/Utils.scss";
 
-// .clock {
-//   width: 10%;
-//   font-size: 30px;
-//   font-weight: 500;
-//   color: #f19101;
-//   margin-top: 70px;
-//   font-family: "cherry bomb", sans-serif;
-// }
 
-// .myButton:hover {
-//   background: linear-gradient(to bottom, hsl(36, 93%, 54%) 5%, #a97526 100%);
-//   background-color: #ffb342;
-// }
-// .myButton:active {
-//   position: relative;
-//   top: 1px;
-// }
+.stopwatch-container {
+  display: flex;
+  justify-content: center;
+  margin-top: 10px;
+  align-items: flex-end;
+  position: absolute;
+  left: 45%;
+  top: 5%;
+  z-index: 1;
+
+  }
+  
+.clock {
+  width: 10%;
+  font-size: 30px;
+  font-weight: 500;
+  color: $orange; 
+  margin-top: 60px;
+ @include text-shadow; 
+}
+

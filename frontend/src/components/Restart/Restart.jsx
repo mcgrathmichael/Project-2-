@@ -4,12 +4,12 @@ function Restart() {
   };
 
   return (
-    <>
+    <div className="restart_container">
       {" "}
-      <button type="submit" className="myButton" onClick={restart}>
+      <button type="submit" id="restart" onClick={restart}>
         Restart
       </button>
-    </>
+      </div>
   );
 }
 export default Restart;
