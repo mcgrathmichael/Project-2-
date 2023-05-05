@@ -27,7 +27,9 @@
 .form-username {
   display: flex;
   width: 30%;
+  width: 30%;
   justify-content: center;
+  flex-grow: 0;
   flex-grow: 0;
 }
 .pseudo {
