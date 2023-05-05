@@ -36,33 +36,36 @@ function GameLogic({ apiName, apiData, apiList }) {
 
   const [showComponent, setShowComponent] = useState(false);
   const flipCard = (index) => {
-    if (showComponent && finished !== true) {
-      if (clickedImg.length === 0) {
-        setClickedImg([index]);
-      } else if (clickedImg.length === 1) {
-        const firstChoice = clickedImg[0];
-        const secondChoice = index;
-        if (firstChoice !== secondChoice) {
-          setTurns(turns + 1);
-          if (cards[firstChoice] === cards[secondChoice]) {
-            setMatchedCards([...matchedCards, firstChoice, secondChoice]);
-            console.warn("match !");
-            setScore(score + 500);
-            SoundManager("pairfound");
-          } else {
-            console.warn("not a match !");
-            SoundManager("badpair");
+    if (!matchedCards.includes(index)) {
+      if (showComponent && finished !== true) {
+        if (clickedImg.length === 0) {
+          setClickedImg([index]);
+        } else if (clickedImg.length === 1) {
+          const firstChoice = clickedImg[0];
+          const secondChoice = index;
 
-            if (score === 0 || score <= 150) {
-              setScore(0);
+          if (firstChoice !== secondChoice) {
+            setTurns(turns + 1);
+            if (cards[firstChoice] === cards[secondChoice]) {
+              setMatchedCards([...matchedCards, firstChoice, secondChoice]);
+              console.warn("match !");
+              setScore(score + 500);
+              SoundManager("pairfound");
             } else {
-              setScore(score - 150);
+              console.warn("not a match !");
+              SoundManager("badpair");
+
+              if (score === 0 || score <= 150) {
+                setScore(0);
+              } else {
+                setScore(score - 150);
+              }
             }
+            setClickedImg([...clickedImg, index]);
           }
-          setClickedImg([...clickedImg, index]);
+        } else if (clickedImg.length === 2) {
+          setClickedImg([index]);
         }
-      } else if (clickedImg.length === 2) {
-        setClickedImg([index]);
       }
     }
   };
