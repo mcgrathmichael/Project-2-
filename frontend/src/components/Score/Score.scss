@@ -1,23 +1,9 @@
 @import "../Utils/Utils.scss";
 
-.scoreTitle {
-@include text-size; 
-color: $orange; 
-@include text-shadow; 
-position: absolute;
-  right: 4%;
+@import "../Utils/Utils.scss";
 
+.scoreTitle {
+  @include text-size;
+  color: $orange;
+  @include text-shadow;
 }
-//   color: #99c24d;
-//   filter: drop-shadow(0px 4px 4px rgba(0, 0, 0, 0.6499999761581421));
-//   text-align: center;
-//   vertical-align: text-top;
-//   font-size: 20px;
-//   font-family: "cherry bomb", sans-serif;
-//   line-height: auto;
-//   border-style: hidden;
-//   outline: none;
-//   position: absolute;
-//   top: 23%;
-//   right: 4%;
-// }

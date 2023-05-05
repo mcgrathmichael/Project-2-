@@ -22,7 +22,7 @@ function FetchButtons({ isReady }) {
     {
       name: "Zelda",
       url: `https://botw-compendium.herokuapp.com/api/v2/all`,
-      path_to_data: "data.data.equipment",
+      path_to_data: "data.data.monsters",
       path_to_image: "image",
       key: "id",
       item_name: "name",
@@ -112,9 +112,10 @@ function FetchButtons({ isReady }) {
 
   // Function to render the data from the API in the last return,  perhaps it could be
   // used to send image to other components ?
+
   const renderApiData = () => {
     if (filteredData.length === 0 && fetched) {
-      return <div>Loading...</div>;
+      return <div className="loader" />;
     }
     return (
       <div>

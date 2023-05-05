@@ -1,34 +1,39 @@
-import React, { useState, useEffect } from "react";
+import React, { useEffect } from "react";
 import "./StopWatch.scss";
 import PropTypes from "prop-types";
 
-function StopWatch({ isFinished }) {
-  const [time, setTime] = useState(120);
-
+function StopWatch({ isFinished, win, time, setTime }) {
   useEffect(() => {
-    const timer = setInterval(() => {
-      setTime((timee) => {
-        if (timee === 0) {
-          clearInterval(timer);
-          isFinished(true);
-          return 0;
-        }
-        return timee - 1;
-      });
-    }, 1000);
+    if (win !== true) {
+      const timer = setInterval(() => {
+        setTime((timee) => {
+          if (timee === 0 && !win) {
+            clearInterval(timer);
+            isFinished(true);
+          }
+          return timee - 1;
+        });
+      }, 1000);
+    }
   }, []);
 
   return (
     <div className="stopwatch-container">
       <p className="clock">
-        {`${Math.floor(time / 60)}`.padStart(2, 0)}:
-        {`${time % 60}`.padStart(2, 0)}
+        {!win ? `${Math.floor(time / 60)}`.padStart(2, 0) : "00"}:
+        {!win ? `${time % 60}`.padStart(2, 0) : "00"}
       </p>
     </div>
   );
 }
 
 export default StopWatch;
+StopWatch.defaultProps = {
+  win: false,
+};
 StopWatch.propTypes = {
   isFinished: PropTypes.func.isRequired,
+  win: PropTypes.bool,
+  time: PropTypes.number.isRequired,
+  setTime: PropTypes.func.isRequired,
 };

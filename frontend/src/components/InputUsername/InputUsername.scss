@@ -8,7 +8,7 @@
   width: 30%;
   min-width: 8rem;
   box-shadow: none;
-  border-color: black;
+  border-color: $black;
   border-bottom-style: groove;
   border-right-style: groove;
   border-top-style: groove;
@@ -18,17 +18,18 @@
   background-color: $white;
   border-top-left-radius: 10px;
   border-bottom-left-radius: 10px;
-  border: none;
-  width: 70%;
-  min-width: 10rem;
-  border-color: black;
-  border-style: groove;
+  border-bottom-style: groove;
+  border-left-style: groove;
+  border-top-style: groove;
+  border-color: $black;
 }
 
 .form-username {
   display: flex;
   width: 30%;
+  width: 30%;
   justify-content: center;
+  flex-grow: 0;
   flex-grow: 0;
 }
 .pseudo {

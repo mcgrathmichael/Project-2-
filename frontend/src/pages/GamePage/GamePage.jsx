@@ -11,7 +11,7 @@ function GamePage() {
   // hide these components for 5 seconds at the start of the game
 
   return (
-    <div className="game">
+    <div className="game" onDragStart={(e) => e.preventDefault()}>
       <GameLogic apiName={apiName} apiData={apiData} apiList={apiList} />
     </div>
   );
