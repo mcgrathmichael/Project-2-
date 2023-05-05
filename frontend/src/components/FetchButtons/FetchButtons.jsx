@@ -22,7 +22,7 @@ function FetchButtons({ isReady }) {
     {
       name: "Zelda",
       url: `https://botw-compendium.herokuapp.com/api/v2/all`,
-      path_to_data: "data.data.equipment",
+      path_to_data: "data.data.monsters",
       path_to_image: "image",
       key: "id",
       item_name: "name",
