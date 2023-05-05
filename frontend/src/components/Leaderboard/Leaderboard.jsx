@@ -112,15 +112,19 @@ function Leaderboard() {
           <div>Score</div>
         </div>
         <div className="list">
-          {board.map((leader, index) => (
-            <div className="player" key={leader.id}>
-              <span> {index + 1}</span>
-              <div className="user">
-                <span> {leader.name} </span>
-              </div>
-              <span> {leader.score} </span>
+          <div className="scroll-bar-wrap">
+            <div className="scroll-box">
+              {board.map((leader, index) => (
+                <div className="player" key={leader.id}>
+                  <span> {index + 1}</span>
+                  <div className="user">
+                    <span> {leader.name} </span>
+                  </div>
+                  <span> {leader.score} </span>
+                </div>
+              ))}
             </div>
-          ))}
+          </div>
         </div>
       </div>
     </div>

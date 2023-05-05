@@ -33,13 +33,16 @@
   height: 100%;
   backface-visibility: hidden;
 }
-.card .front img {
-  display: block;
-  max-width: 100%;
+input.front {
+  border-radius: 10px;
 }
 .card .back {
-  background-color: $green;
+  background-color: lightgray;
   transform: rotateY(180deg);
+  -webkit-box-shadow: inset 0px 0px 0px 2px black;
+  -moz-box-shadow: inset 0px 0px 0px 2px black;
+  box-shadow: inset 0px 0px 0px 2px black;
+  border-radius: 10px;
 }
 .card-outer.flipped .card {
   transform: rotateY(0);

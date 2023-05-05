@@ -9,7 +9,7 @@ import RulesPage from "./pages/RulesPage/RulesPage";
 function App() {
   // Only show StopWatch after 5 seconds
   return (
-    <div className="App">
+    <div className="App" onDragStart={(e) => e.preventDefault()}>
       <BrowserRouter>
         <Routes>
           <Route path="/" element={<NavBar />}>

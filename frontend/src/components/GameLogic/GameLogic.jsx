@@ -133,8 +133,8 @@ function GameLogic({ apiName, apiData, apiList }) {
                 <div className="card">
                   <div className="front">
                     <input
-                      type="image"
                       className="front"
+                      type="image"
                       onDragStart={(e) => e.preventDefault()}
                       alt="memorycard"
                       src={
